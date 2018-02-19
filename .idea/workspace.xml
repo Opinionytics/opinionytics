@@ -15,7 +15,7 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Opinionytics/settings.py">
+        <entry file="file://$PROJECT_DIR$/opinionytics/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="561">
               <caret line="33" column="14" lean-forward="false" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
@@ -35,7 +35,7 @@
         </entry>
       </file>
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Opinionytics/urls.py">
+        <entry file="file://$PROJECT_DIR$/opinionytics/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="263">
               <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
@@ -100,8 +100,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/analyze/templates/input_text.html" />
-        <option value="$PROJECT_DIR$/Opinionytics/urls.py" />
-        <option value="$PROJECT_DIR$/Opinionytics/settings.py" />
+        <option value="$PROJECT_DIR$/opinionytics/urls.py" />
+        <option value="$PROJECT_DIR$/opinionytics/settings.py" />
         <option value="$PROJECT_DIR$/analyze/urls.py" />
         <option value="$PROJECT_DIR$/analyze/templates/input.html" />
         <option value="$PROJECT_DIR$/analyze/templates/result.html" />
@@ -140,18 +140,18 @@
         <subPane>
           <expand>
             <path>
-              <item name="Opinionytics" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Opinionytics" type="462c0819:PsiDirectoryNode" />
+              <item name="opinionytics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="opinionytics" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Opinionytics" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Opinionytics" type="462c0819:PsiDirectoryNode" />
+              <item name="opinionytics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="opinionytics" type="462c0819:PsiDirectoryNode" />
               <item name="analyze" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Opinionytics" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Opinionytics" type="462c0819:PsiDirectoryNode" />
-              <item name="Opinionytics" type="462c0819:PsiDirectoryNode" />
+              <item name="opinionytics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="opinionytics" type="462c0819:PsiDirectoryNode" />
+              <item name="opinionytics" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -164,7 +164,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Opinionytics" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../opinionytics" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RunDashboard">
@@ -179,20 +179,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Django server.Opinionytics">
-    <configuration name="Opinionytics" type="Python.DjangoServer" factoryName="Django server">
+  <component name="RunManager" selected="Django server.opinionytics">
+    <configuration name="opinionytics" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="Opinionytics.settings" />
+        <env name="DJANGO_SETTINGS_MODULE" value="opinionytics.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Opinionytics" />
+      <module name="opinionytics" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
       <option name="host" value="" />
@@ -269,7 +269,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Opinionytics/settings.py">
+    <entry file="file://$PROJECT_DIR$/opinionytics/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="33" column="14" lean-forward="false" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
@@ -313,7 +313,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Opinionytics/urls.py">
+    <entry file="file://$PROJECT_DIR$/opinionytics/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
           <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
