@@ -8,8 +8,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-```Python 3.6```
-```Django 2.1```
+```python 3.6```
+```django 2.1```
+```npm 5```
 
 ## Installing
 
@@ -51,9 +52,21 @@ cd backend
 python3 manage.py runserver
 ```
 
-### See what it does
+#### See what it does
 
 ```http://127.0.0.1:8000/analyze/ ```
+
+### Deploying the frontend
+
+```
+cd frontend
+npm install
+npm start
+```
+
+#### See what it does
+
+```http://localhost:3000/ ```
 
 ## Authors
 
