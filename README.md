@@ -55,10 +55,6 @@ python3 manage.py runserver
 
 ```http://127.0.0.1:8000/analyze/ ```
 
-## Contribution
-
-Please read [CONTRIBUTING.md](#) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Authors
 
 * __Charlotte Delfosse__
