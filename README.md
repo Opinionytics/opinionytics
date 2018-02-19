@@ -44,9 +44,14 @@ pip3 install --upgrade pytrends
 
 ## Deploying the application
 
-```python3 manage.py runserver```
+### Deploying the backend
 
-## See what it does
+```
+cd backend
+python3 manage.py runserver
+```
+
+### See what it does
 
 ```http://127.0.0.1:8000/analyze/ ```
 
