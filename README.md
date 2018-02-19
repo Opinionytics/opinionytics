@@ -48,7 +48,7 @@ pip3 install --upgrade pytrends
 
 ## See what it does
 
-```http://127.0.0.1:8000/analyze/```
+```http://127.0.0.1:8000/analyze/ ```
 
 ## Contribution
 
