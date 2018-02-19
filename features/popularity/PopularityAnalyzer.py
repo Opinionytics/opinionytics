@@ -72,13 +72,6 @@ class PopularityAnalyzer:
         for text in data:
             result.append(self.__getPopularityFromText(text.get('text'), numberConcepts))
 
-
-        
-
-
-
-
-
 ## Extract popularity from data
 
 
