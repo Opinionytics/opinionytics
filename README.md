@@ -16,22 +16,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing APIs
 
-#### Aylien, Watson and Pytrends
+#### Aylien, Watson, Pytrends and Django
 
 ```
 pip3 install --upgrade aylien-apiclient
 pip3 install --upgrade watson-developer-cloud
 pip3 install --upgrade pytrends
+[Django](https://docs.djangoproject.com/en/2.0/topics/install/)
 ```
-#### Django
-
-##### Clone it 
-
-```git clone https://github.com/django/django.git```
-
-##### And Install it after
-
-```pip install -e django/```
 
 ### Clone the repository into an appropriate place
 
