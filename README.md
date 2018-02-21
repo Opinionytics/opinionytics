@@ -8,8 +8,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-```python 3.6```
-```django 2.1```
+```python 3```
+```django 2```
 ```npm 5```
 
 ## Installing
