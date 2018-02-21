@@ -48,8 +48,7 @@ pip3 install --upgrade pytrends
 ### Deploying the backend
 
 ```
-cd backend
-python3 manage.py runserver
+python3 backend/manage.py runserver
 ```
 
 #### See what it does
@@ -59,9 +58,8 @@ python3 manage.py runserver
 ### Deploying the frontend
 
 ```
-cd frontend
-npm install
-npm start
+npm install frontend 
+cd frontend && npm start
 ```
 
 #### See what it does
