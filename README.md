@@ -19,9 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 #### Aylien, Watson and Pytrends
 
 ```
-pip3 install --upgrade aylien-apiclient
-pip3 install --upgrade watson-developer-cloud
-pip3 install --upgrade pytrends
+pip3 install --upgrade aylien-apiclient watson-developer-cloud pytrends
 ```
 #### Django
 
