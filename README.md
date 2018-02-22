@@ -66,8 +66,8 @@ python3 backend/manage.py runserver
 ### Deploying the frontend
 
 ```
-cd frontend 
-npm install && npm start
+cd frontend && npm install
+npm start
 ```
 
 #### See what it does
