@@ -42,13 +42,15 @@ pip install -e django/
 #### Using HTTP
 
 ```
-git clone https://gitlab.com/aminemboulouma/Opinionytics.git
+https://gitlab.com/Opinionytics/opinionytics.git
+cd opinionytics
 ```
 
 #### Using SSH
 
 ```
-git clone git@gitlab.com:aminemboulouma/Opinionytics.git
+git@gitlab.com:Opinionytics/opinionytics.git
+cd opinionytics
 ```
 
 ## Deploying the application
