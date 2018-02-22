@@ -27,21 +27,29 @@ pip3 install --upgrade pytrends
 
 ##### Clone it 
 
-```git clone https://github.com/django/django.git```
+```
+git clone https://github.com/django/django.git
+```
 
 ##### And Install it after
 
-```pip install -e django/```
+```
+pip install -e django/
+```
 
 ### Clone the repository into an appropriate place
 
 #### Using HTTP
 
-```git clone https://gitlab.com/aminemboulouma/Opinionytics.git```
+```
+git clone https://gitlab.com/aminemboulouma/Opinionytics.git
+```
 
 #### Using SSH
 
-```git clone git@gitlab.com:aminemboulouma/Opinionytics.git```
+```
+git clone git@gitlab.com:aminemboulouma/Opinionytics.git
+```
 
 ## Deploying the application
 
