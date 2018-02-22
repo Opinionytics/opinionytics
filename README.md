@@ -8,8 +8,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-```python 3.6```
-```django 2.1```
+```python 3```
+```django 2```
 ```npm 5```
 
 ## Installing
@@ -27,29 +27,38 @@ pip3 install --upgrade pytrends
 
 ##### Clone it 
 
-```git clone https://github.com/django/django.git```
+```
+git clone https://github.com/django/django.git
+```
 
 ##### And Install it after
 
-```pip install -e django/```
+```
+pip install -e django/
+```
 
 ### Clone the repository into an appropriate place
 
 #### Using HTTP
 
-```git clone https://gitlab.com/aminemboulouma/Opinionytics.git```
+```
+https://gitlab.com/Opinionytics/opinionytics.git
+cd opinionytics
+```
 
 #### Using SSH
 
-```git clone git@gitlab.com:aminemboulouma/Opinionytics.git```
+```
+git@gitlab.com:Opinionytics/opinionytics.git
+cd opinionytics
+```
 
 ## Deploying the application
 
 ### Deploying the backend
 
 ```
-cd backend
-python3 manage.py runserver
+python3 backend/manage.py runserver
 ```
 
 #### See what it does
@@ -59,9 +68,8 @@ python3 manage.py runserver
 ### Deploying the frontend
 
 ```
-cd frontend
-npm install
-npm start
+npm install frontend 
+cd frontend && npm start
 ```
 
 #### See what it does
