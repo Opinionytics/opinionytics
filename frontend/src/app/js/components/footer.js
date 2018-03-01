@@ -3,9 +3,15 @@ import '../../css/style.css';
 class Footer extends Component {
     render() {
       return (
-        <p className="App-intro">
-          To get started, edit <b><code>opinionytics/frontend/src/app/js/components/index.js</code></b> and save to reload.
-        </p>
+        <footer className="Footer">
+        <table>
+            <tbody>
+                <tr>
+                <td className="btnAbout">About</td><td>Opinionitycs &copy; 2018</td><td className="btnSetting">Settings</td>
+                </tr>
+            </tbody>
+        </table>
+        </footer>
       );
     }
 }
