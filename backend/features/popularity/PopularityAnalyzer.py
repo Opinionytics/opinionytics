@@ -5,7 +5,7 @@ import json;
 ## Import Watson's Services
 
 from watson_developer_cloud.natural_language_understanding_v1 import Features, ConceptsOptions
-
+from watson_developer_cloud import WatsonException, WatsonInvalidArgument
 ## Extract popularity from a text
 
 
@@ -16,14 +16,19 @@ class PopularityAnalyzer:
         self.natural_language_understanding = natural_language_understanding
 
     def getPopularity(self,url=None,text=None,data=None,numberConcepts=4):
-        if url is not None:
-            return self.__getPopularityFromUrl(url,numberConcepts=numberConcepts)
-        elif text is not None:
-            return self.__getPopularityFromText(text,numberConcepts=numberConcepts)
-        elif data is not None:
-            return self.__getPopularityFromData(data,numberConcepts=numberConcepts)
-        else:
-            raise ValueError('Url or text must be provided')
+        try:
+            if url is not None:
+                return self.__getPopularityFromUrl(url,numberConcepts=numberConcepts)
+            elif text is not None:
+                return self.__getPopularityFromText(text,numberConcepts=numberConcepts)
+            elif data is not None:
+                return self.__getPopularityFromData(data,numberConcepts=numberConcepts)
+            else:
+                raise ValueError('Url or text must be provided')
+        except WatsonException:
+            return None
+        except WatsonInvalidArgument:
+            return None
     
     
 

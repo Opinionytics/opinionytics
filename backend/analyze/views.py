@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
 from features.summary.SummaryGenerator import *
 from features.topicsInvolved.TopicClassifier import *
@@ -10,6 +11,7 @@ from pytrends.request import TrendReq
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 import Features, ConceptsOptions
 from aylienapiclient import textapi
+
 
 
 APP_ID = "8ebd4c0e"
@@ -41,9 +43,13 @@ def getText(request):
     result = ""
     if request.method == 'POST':
         text = request.POST.get('textfield', None)
-        result =  str(summaryGenerator.getSummary(text=text))
-        result += str(subjectivityAnalyzer.getSubjectivity(text=text))
-        result += str(positivityAnalyzer.getPositivity(text=text))
-        result += str(topicsClassifier.getTopics(text=text))
-        result += str(popularityAnalyzer.getPopularity(text=text))
-    return render(request, 'result.html',{'result': result})
+        if len(text.split(" ")) > 50:
+            result += str(subjectivityAnalyzer.getSubjectivity(text=text))
+            result += str(positivityAnalyzer.getPositivity(text=text))
+            result += str(topicsClassifier.getTopics(text=text))
+            result += str(popularityAnalyzer.getPopularity(text=text))
+            result += str(summaryGenerator.getSummary(text=text))
+            return render(request, 'result.html', {'result': result})
+
+        else:
+            return HttpResponseRedirect("..")
