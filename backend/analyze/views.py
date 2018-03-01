@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 
 from features.summary.SummaryGenerator import *
 from features.topicsInvolved.TopicClassifier import *
@@ -42,6 +43,8 @@ def index(request):
 def getText(request):
     result = ""
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('../../registration')
         text = request.POST.get('textfield', None)
         if len(text.split(" ")) > 50:
             result += str(subjectivityAnalyzer.getSubjectivity(text=text))
