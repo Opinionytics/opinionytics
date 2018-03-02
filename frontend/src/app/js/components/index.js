@@ -6,6 +6,7 @@ import Form from './form.js'
 import showResults from "./showResults";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Analytics from './analytics';
 
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Form onSubmit={showResults}/>
+        <Analytics />
         <Footer />
       </div>
     );

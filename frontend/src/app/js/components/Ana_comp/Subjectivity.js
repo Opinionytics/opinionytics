@@ -6,6 +6,15 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 export default class Subjectivity extends React.Component{
     handleOpen = () => {
+        const actions = [
+            <FlatButton
+                label="Ok"
+                primary={true}
+                keyboardFocused={true}
+                onClick={this.handleClose}
+            />,
+        ];
+
         <Dialog
         title="Dialog With Actions"
         actions={actions}
@@ -18,14 +27,7 @@ The actions in this window were passed in as an array of React objects.
     };
 
     render(){
-        const actions = [
-            <FlatButton
-                label="Ok"
-                primary={true}
-                keyboardFocused={true}
-                onClick={this.handleClose}
-            />,
-        ];
+        
     return(
         <Card>
             <CardTitle title="Subjectivity" subtitle="The Subjectivity of the input text" />
