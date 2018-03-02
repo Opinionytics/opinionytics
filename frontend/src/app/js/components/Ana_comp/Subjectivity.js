@@ -26,8 +26,10 @@ export default class Subjectivity extends React.Component{
                 onClick={this.handleClose}
             />,
         ];
-
+        
     return(
+        
+
         <Card>
             <CardTitle title="Subjectivity" subtitle="The Subjectivity of the input text" />
             <CardText>
@@ -39,7 +41,7 @@ export default class Subjectivity extends React.Component{
 
             <CardActions>
                 <RaisedButton label="Help" onClick={this.handleOpen} />
-                   
+
                 <Dialog
                     title="What is it ?"
                     actions={actions}
