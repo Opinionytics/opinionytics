@@ -5,29 +5,28 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
 export default class Subjectivity extends React.Component{
+    state = {
+        open: false,
+    };
+
     handleOpen = () => {
+        this.setState({open: true});
+    };
+    
+    handleClose = () => {
+        this.setState({open: false});
+    };
+
+    render(){
         const actions = [
             <FlatButton
                 label="Ok"
-                primary={true}
+                primary={false}
                 keyboardFocused={true}
                 onClick={this.handleClose}
             />,
         ];
 
-        <Dialog
-        title="Dialog With Actions"
-        actions={actions}
-        modal={false}
-        open={this.state.open}
-        onRequestClose={this.handleClose}
-    >
-The actions in this window were passed in as an array of React objects.
-    </Dialog>
-    };
-
-    render(){
-        
     return(
         <Card>
             <CardTitle title="Subjectivity" subtitle="The Subjectivity of the input text" />
@@ -39,13 +38,18 @@ The actions in this window were passed in as an array of React objects.
             </CardText>
 
             <CardActions>
-                <RaisedButton label="Help" onClick={this.handleOpen}>
+                <RaisedButton label="Help" onClick={this.handleOpen} />
                    
-                </RaisedButton>
+                <Dialog
+                    title="What is it ?"
+                    actions={actions}
+                    modal={false}
+                    open={this.state.open}
+                    onRequestClose={this.handleClose}
+                >
+                    Subjectivity is based on the Alien API. For more informations, go on their Website.
+                </Dialog>
             </CardActions>
-
-            
-            
         </Card>
 
         
