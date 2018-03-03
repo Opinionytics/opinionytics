@@ -28,7 +28,13 @@ export default class CardTemplate extends React.Component{
         ];
         
         return(
-            <Card>
+            <Card 
+                style={{
+                    backgroundColor: "white",
+                    width: '70%',
+                    margin: '0 auto',
+                }}
+            >
                 <CardTitle title={this.props.featureTitle} subtitle={this.props.featureSubtitle} />
                 <CardText>
                     {this.props.children}

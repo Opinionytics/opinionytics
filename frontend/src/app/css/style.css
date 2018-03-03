@@ -76,3 +76,8 @@ footer {
 .Form {
   margin-top: 50px;
 }
+
+.MuiThemeProvider{
+  background-color: pink;
+  display: flex;
+}

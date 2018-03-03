@@ -15,6 +15,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Form onSubmit={showResults}/>
+        <Analytics />
         <Footer />
       </div>
     );
