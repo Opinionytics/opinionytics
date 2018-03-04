@@ -81,3 +81,28 @@ footer {
   background-color: pink;
   display: flex;
 }
+
+ul.header {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+ul.header li {
+  float: left;
+}
+
+ul.header li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: 'LatoWeb';
+}
+
+li a:hover {
+  background-color: #111;
+}
