@@ -77,11 +77,6 @@ footer {
   margin-top: 50px;
 }
 
-.MuiThemeProvider{
-  background-color: pink;
-  display: flex;
-}
-
 ul.header {
   list-style-type: none;
   margin: 0;
@@ -105,4 +100,13 @@ ul.header li a {
 
 li a:hover {
   background-color: #111;
+}
+
+#anaCards{
+  margin: 5%;
+  display: grid;
+  /*grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 3%;*/
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /*grid-template-rows: repeat(2, 100%);*/
 }
