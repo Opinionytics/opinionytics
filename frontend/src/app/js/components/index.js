@@ -15,8 +15,10 @@ class App extends Component {
       <div className="App">
         <MainNavBar />
         <Header />
-        <Form onSubmit={showResults}/>
-        <Analytics />
+        <section>
+          <Form onSubmit={showResults}/>
+          <Analytics />
+        </section>
         <Footer />
       </div>
     );

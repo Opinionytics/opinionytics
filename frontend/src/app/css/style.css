@@ -14,10 +14,6 @@ html {
   font-family: 'LatoWeb';
 }
 
-body {
-  margin-bottom: 60px; /* Margin bottom by footer height */
-}
-
 footer {
   position: absolute;
   bottom: 0;
@@ -110,3 +106,10 @@ li a:hover {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   /*grid-template-rows: repeat(2, 100%);*/
 }
+
+.App {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 70px;
+}
+
