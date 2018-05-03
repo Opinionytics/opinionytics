@@ -87,7 +87,7 @@ npm react-scripts build
 #### Deploy Opinionytics
 
 ```
-python3 ../backend/manage.py runserver
+python3 /backend/manage.py runserver
 ```
 
 #### Opinionytics
