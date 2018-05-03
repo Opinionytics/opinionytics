@@ -19,9 +19,11 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    # path('',views.redirect,name='redirect'),
-    path('analyze/', include('analyze.urls')),
+    path('analyze', views.index, name='input'),
+    path('analyze/', views.index, name='input'),
+    path('getText', views.getText, name='getText'),
+    path('getText/', views.getText, name='getText'),
+    path('admin', admin.site.urls),
     path('admin/', admin.site.urls),
-    path('registration/', include('registration.urls')),
-    re_path('', TemplateView.as_view(template_name='index.html')),
+    re_path('', TemplateView.as_view(template_name='index.html'))
 ]

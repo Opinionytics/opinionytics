@@ -29,8 +29,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'analyze',
-    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -64,15 +62,16 @@ TEMPLATES = [
             ],
         },
         'DIRS': [
-            os.path.join(BASE_DIR, '../frontend/build')
+            os.path.join(BASE_DIR, '../frontend/build'),
+            os.path.join(BASE_DIR, './opinionytics/templates'),
         ],
         
     },
 ]
 
 STATICFILES_DIRS = [
-            os.path.join(BASE_DIR, '../frontend/build/static'),
-        ]
+    os.path.join(BASE_DIR, '../frontend/build/static'),
+]
 
 WSGI_APPLICATION = 'opinionytics.wsgi.application'
 
@@ -126,4 +125,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+
