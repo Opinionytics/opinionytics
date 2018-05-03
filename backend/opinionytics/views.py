@@ -55,7 +55,4 @@ def getText(request):
             # render(request, 'result.html', {'result': result})
             return render(request, 'result.html', {'result': result})
         else:
-            return HttpResponseRedirect("..")
-
-
-
+            return HttpResponseRedirect("../analyze/")
