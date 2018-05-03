@@ -75,7 +75,7 @@ npm start
 
 ```http://localhost:3000/ ```
 
-### Deploying the frontend over the backend with the new updates on the frontend
+### Deploying Opinionytics
 
 #### Build the frontend
 
