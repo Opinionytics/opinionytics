@@ -52,7 +52,8 @@ def getText(request):
             result += str(topicsClassifier.getTopics(text=text))
             result += str(popularityAnalyzer.getPopularity(text=text))
             result += str(summaryGenerator.getSummary(text=text))
-            return render(request, 'result.html', {'result': result})
-
+            # Render function for tests
+            # render(request, 'result.html', {'result': result})
+            return result
         else:
             return HttpResponseRedirect("..")

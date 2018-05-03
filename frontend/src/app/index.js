@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import '../../css/style.css';
-import Footer from './footer.js';
-import Header from './header.js'
-import Form from './form.js'
-import showResults from "./showResults";
+import './css/style.css';
+import Footer from './js/components/footer.js';
+import Header from './js/components/header.js'
+import Form from './js/components/form.js'
+import showResults from "./js/components/showResults";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Analytics from './analytics';
-import MainNavBar from './mainNavBar';
+// import Analytics from './js/components/analytics';
+import MainNavBar from './js/components/mainNavBar';
 
 class App extends Component {
   render() {
@@ -17,7 +17,7 @@ class App extends Component {
         <Header />
         <section>
           <Form onSubmit={showResults}/>
-          <Analytics />
+          {/* <Analytics /> */}
         </section>
         <Footer />
       </div>
