@@ -54,6 +54,6 @@ def getText(request):
             result += str(summaryGenerator.getSummary(text=text))
             # Render function for tests
             # render(request, 'result.html', {'result': result})
-            return result
+            return render(request, 'result.html', {'result': result})
         else:
             return HttpResponseRedirect("..")
