@@ -21,8 +21,8 @@ from . import views
 urlpatterns = [
     path('analyze', views.index, name='input'),
     path('analyze/', views.index, name='input'),
-    path('getText', views.getText, name='getText'),
-    path('getText/', views.getText, name='getText'),
+    path('get_result', views.get_result, name='result'),
+    path('get_result/', views.get_result, name='result'),
     path('admin', admin.site.urls),
     path('admin/', admin.site.urls),
     re_path('', TemplateView.as_view(template_name='index.html'))

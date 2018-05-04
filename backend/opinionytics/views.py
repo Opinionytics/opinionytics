@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 
+from opinionytics.all_views.All_features_view import *
+
 from features.summary.SummaryGenerator import *
 from features.topicsInvolved.TopicClassifier import *
 from features.positivity.PositivityAnalyzer import *
@@ -32,27 +34,25 @@ natural_language_understanding = NaturalLanguageUnderstandingV1(
 
 pytrends = TrendReq(hl='en-US', tz=360)
 
-summaryGenerator = SummaryGenerator(client)
-subjectivityAnalyzer = SubjectivityAnalyzer(client)
-positivityAnalyzer = PositivityAnalyzer(client)
-topicsClassifier = TopicClassifier(client)
-popularityAnalyzer = PopularityAnalyzer(pytrends, natural_language_understanding)
+all_features_view = All_features_view(client, pytrends, natural_language_understanding)
 
 def index(request):
     return render(request, 'input.html')
 
-def getText(request):
+
+def get_result(request):
     result = ""
     if request.method == 'POST':
         text = request.POST.get('textfield', None)
-        if len(text.split(" ")) > 50:
-            result += str(subjectivityAnalyzer.getSubjectivity(text=text))
-            result += str(positivityAnalyzer.getPositivity(text=text))
-            result += str(topicsClassifier.getTopics(text=text))
-            result += str(popularityAnalyzer.getPopularity(text=text))
-            result += str(summaryGenerator.getSummary(text=text))
-            # Render function for tests
-            # render(request, 'result.html', {'result': result})
-            return render(request, 'result.html', {'result': result})
+        url = request.POST.get('urlfield', None)
+        if text != None:
+            if len(text.split(" ")) > 50:
+                result += all_features_view.execute_text(text)
+                return render(request, 'result.html', {'result': result})
         else:
-            return HttpResponseRedirect("../analyze/")
+            return HttpResponseRedirect("../analyze/") 
+        if url != None:
+            result += all_features_view.execute_url(url)
+            return render(request, 'result.html', {'result': result})
+        
+        

@@ -1,6 +1,10 @@
-<form method="POST" action="/getText/">
-{% csrf_token %}
-<input type="text" name="textfield">
+<form method="POST" action="/get_result/">
+    {% csrf_token %}
+    <input type="text" placeholder="enter text" name="textfield">
 
-<button type="submit">Upload text</button>
+    <button type="submit">Upload text</button>
+
+    <input type="url" placeholder="enter url" name="urlfield">
+    
+    <button type="submit">Upload url</button>
 </form>
