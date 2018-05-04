@@ -41,18 +41,19 @@ def index(request):
 
 
 def get_result(request):
-    result = ""
+    result_text = ""
+    result_url = ""
     if request.method == 'POST':
         text = request.POST.get('textfield', None)
         url = request.POST.get('urlfield', None)
         if text != None:
             if len(text.split(" ")) > 50:
-                result += all_features_view.execute_text(text)
-                return render(request, 'result.html', {'result': result})
+                result_text += all_features_view.execute_text(text)
+                return render(request, 'result.html', {'result': result_text})
         else:
             return HttpResponseRedirect("../analyze/") 
         if url != None:
-            result += all_features_view.execute_url(url)
-            return render(request, 'result.html', {'result': result})
+            result_url += all_features_view.execute_url(url)
+            return render(request, 'result.html', {'result': result_url})
         
         
