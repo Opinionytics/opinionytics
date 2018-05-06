@@ -49,11 +49,11 @@ def get_result(request):
         if text != None:
             if len(text.split(" ")) > 50:
                 result_text += all_features_view.execute_text(text)
-                return render(request, 'result.html', {'result': result_text})
+                return render(request, 'result.html', {'result_text': result_text})
         else:
             return HttpResponseRedirect("../analyze/") 
         if url != None:
             result_url += all_features_view.execute_url(url)
-            return render(request, 'result.html', {'result': result_url})
+            return render(request, 'result.html', {'result_url': result_url})
         
         
