@@ -47,7 +47,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'opinionytics.urls'
+ROOT_URLCONF = 'src.urls'
 
 TEMPLATES = [
     {
@@ -62,17 +62,17 @@ TEMPLATES = [
             ],
         },
         'DIRS': [
-            os.path.join(BASE_DIR, './opinionytics/templates'),
+            os.path.join(BASE_DIR, './src/templates'),
         ],
         
     },
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '../frontend/build/static'),
+
 ]
 
-WSGI_APPLICATION = 'opinionytics.wsgi.application'
+WSGI_APPLICATION = 'src.wsgi.application'
 
 
 # Database

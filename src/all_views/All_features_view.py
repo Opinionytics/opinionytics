@@ -1,8 +1,8 @@
-from opinionytics.features.summary.SummaryGenerator import *
-from opinionytics.features.topicsInvolved.TopicClassifier import *
-from opinionytics.features.positivity.PositivityAnalyzer import *
-from opinionytics.features.subjectivity.SubjectivityAnalyzer import *
-from opinionytics.features.popularity.PopularityAnalyzer import *
+from src.features.summary.SummaryGenerator import *
+from src.features.topicsInvolved.TopicClassifier import *
+from src.features.positivity.PositivityAnalyzer import *
+from src.features.subjectivity.SubjectivityAnalyzer import *
+from src.features.popularity.PopularityAnalyzer import *
 
 
 

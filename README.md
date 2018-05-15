@@ -53,7 +53,7 @@ cd opinionytics
 ## Deploy Opinionytics
 
 ```
-python3 backend/manage.py runserver
+python3 manage.py runserver
 ```
 
 ### Opinionytics
