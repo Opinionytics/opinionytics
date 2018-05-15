@@ -10,7 +10,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 ```python 3```
 ```django 2```
-```npm 5```
 
 ## Installing
 
@@ -51,46 +50,13 @@ git clone git@gitlab.com:Opinionytics/opinionytics.git
 cd opinionytics
 ```
 
-## Deploying the application
-
-### Deploying the backend
+## Deploy Opinionytics
 
 ```
 python3 backend/manage.py runserver
 ```
 
-#### See what it does
-
-```http://127.0.0.1:8000/ ```
-
-### Deploying the frontend
-
-```
-cd frontend 
-npm install
-npm start
-```
-
-#### See what it does
-
-```http://localhost:3000/ ```
-
-### Deploying Opinionytics
-
-#### Build the frontend
-
-```
-cd frontend 
-npm react-scripts build
-```
-
-#### Deploy Opinionytics
-
-```
-python3 /backend/manage.py runserver
-```
-
-#### Opinionytics
+### Opinionytics
 
 ```http://127.0.0.1:8000/ ```
 
