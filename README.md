@@ -18,7 +18,7 @@ These instructions will get you a copy of the project up and running on your loc
 #### Aylien, Watson and Pytrends
 
 ```
-pip3 install --upgrade aylien-apiclient watson-developer-cloud pytrends
+pip install --upgrade aylien-apiclient watson-developer-cloud pytrends
 ```
 #### Django
 
@@ -39,14 +39,14 @@ pip install -e django/
 #### Using HTTP
 
 ```
-git clone https://gitlab.com/Opinionytics/opinionytics.git
+git clone https://github.com/Opinionytics/opinionytics.git
 cd opinionytics
 ```
 
 #### Using SSH
 
 ```
-git clone git@gitlab.com:Opinionytics/opinionytics.git
+git clone git@github.com:Opinionytics/opinionytics.git
 cd opinionytics
 ```
 
