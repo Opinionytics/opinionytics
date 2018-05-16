@@ -1,10 +1,19 @@
-<form method="POST" action="/get_result/">
-    {% csrf_token %}
-    <input type="text" placeholder="enter text" name="textfield">
+<!doctype html>
 
-    <button type="submit">Upload text</button></br>
+<html>
+	<head>
+		<title>Opinionytics</title>
+	</head>
+	<body>
+		<form method="POST" action="/get_result/">
+			{% csrf_token %}
+			<input type="text" placeholder="enter text" name="textfield">
 
-    <input type="url" placeholder="enter url" name="urlfield">
-    
-    <button type="submit">Upload url</button>
-</form>
+			<button type="submit">Upload text</button></br>
+
+			<input type="url" placeholder="enter url" name="urlfield">
+			
+			<button type="submit">Upload url</button>
+		</form>
+	</body>
+</html>

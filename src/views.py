@@ -49,14 +49,15 @@ def get_result(request):
     if request.method == 'POST':
         text = request.POST.get('textfield', None)
         url = request.POST.get('urlfield', None)
-        if text != None:
+        if text != None and text != '':
             if len(text.split(" ")) > 50:
                 result_text += all_features_view.execute_text(text)
                 return render(request, 'result.html', {'result_text': result_text})
         else:
             return HttpResponseRedirect("../analyze/") 
-        if url != None:
+        if url != None and url != '':
             result_url += all_features_view.execute_url(url)
             return render(request, 'result.html', {'result_url': result_url})
+    return render("Pas de texte")
         
         
