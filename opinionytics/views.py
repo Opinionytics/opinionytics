@@ -5,12 +5,6 @@ from django.shortcuts import redirect
 
 from opinionytics.all_views.All_features_view import *
 
-from opinionytics.features.summary.SummaryGenerator import *
-from opinionytics.features.topicsInvolved.TopicClassifier import *
-from opinionytics.features.positivity.PositivityAnalyzer import *
-from opinionytics.features.subjectivity.SubjectivityAnalyzer import *
-from opinionytics.features.popularity.PopularityAnalyzer import *
-
 from pytrends.request import TrendReq 
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 import Features, ConceptsOptions
@@ -39,25 +33,52 @@ all_features_view = All_features_view(client, pytrends, natural_language_underst
 def index(request):
     return render(request, 'index.html')
 
-def input(request):
-    return render(request, 'input.html')
+
+def analyze_text(request):
+    return render(request, 'analyze-text.html')
 
 
-def get_result(request):
-    result_text = ""
-    result_url = ""
+def analyze_url(request):
+    return render(request, 'analyze-url.html')
+
+
+def signup(request):
+    return render(request, 'signup.html')
+
+
+def signin(request):
+    return render(request, 'signin.html')
+
+
+def signout(request):
+    return render(request, 'index.html')
+
+
+def get_history(request):
+    return render(request, 'history.html')
+
+
+def upload(request):
+    return render(request, 'upload.html')
+
+
+def get_help(request):
+    return render(request, 'help.html')
+
+
+def get_result_text(request):
     if request.method == 'POST':
         text = request.POST.get('textfield', None)
-        url = request.POST.get('urlfield', None)
-        if text != None and text != '':
+        
+        if text != None:
             if len(text.split(" ")) > 50:
-                result_text += all_features_view.execute_text(text)
-                return render(request, 'result.html', {'result_text': result_text})
-        else:
-            return HttpResponseRedirect("../analyze/") 
-        if url != None and url != '':
-            result_url += all_features_view.execute_url(url)
-            return render(request, 'result.html', {'result_url': result_url})
-    return render("Pas de texte")
+                return render(request, 'result.html', {'result': all_features_view.execute_text(text)})
+            else:
+                return HttpResponseRedirect("../analyze/")
         
         
+def get_result_url(request):
+    if request.method == 'POST':
+        url = request.POST.get('urlfield', None)
+        if url != None:
+            return render(request, 'result.html', {'result': all_features_view.execute_url(url)})

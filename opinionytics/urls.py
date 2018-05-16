@@ -20,12 +20,40 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
-    path('analyze', views.input, name='input'),
-    path('analyze/', views.input, name='input'),
-    path('get_result', views.get_result, name='result'),
-    path('get_result/', views.get_result, name='result'),
+    path('', views.index, name='index'),
+    path('index', views.index, name='index'),
+    path('index/', views.index, name='index'),
+
+    path('analyze-text', views.analyze_text, name='analyze-text'),
+    path('analyze-text/', views.analyze_text, name='analyze-text'),
+
+    path('analyze-url', views.analyze_url, name='analyze-url'),
+    path('analyze-url/', views.analyze_url, name='analyze-url'),
+    
+    path('signup', views.signup, name='signup'),
+    path('signup/', views.signup, name='signup'),
+    
+    path('signin', views.signin, name='signin'),
+    path('signin/', views.signin, name='signin'),
+    
+    path('signout', views.signout, name='signout'),
+    path('signout/', views.signout, name='signout'),
+    
+    path('history', views.get_history, name='history'),
+    path('history/', views.get_history, name='history'),
+    
+    path('upload', views.upload, name='upload'),
+    path('upload/', views.upload, name='upload'),
+    
+    path('help', views.get_help, name='help'),
+    path('help/', views.get_help, name='help'),
+
+    path('get_result_text', views.get_result_text, name='result'),
+    path('get_result_text/', views.get_result_text, name='result'),
+    
+    path('get_result_url', views.get_result_url, name='result'),
+    path('get_result_url/', views.get_result_url, name='result'),
+    
     path('admin', admin.site.urls),
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('get_result/', views.get_result, name='result'),
 ]

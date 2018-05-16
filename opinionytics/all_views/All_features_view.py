@@ -38,6 +38,5 @@ class All_features_view:
         return result
 
 
-
     def execute_data(self, data):
         data

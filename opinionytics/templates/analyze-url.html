@@ -1,0 +1,7 @@
+<form method="POST" action="/get_result_url/">
+    {% csrf_token %}
+
+    <input type="url" placeholder="enter url" name="urlfield">
+    
+    <button type="submit">Upload url</button>
+</form>
