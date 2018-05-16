@@ -44,6 +44,30 @@ def analyze(request):
     return render(request, 'analyze.html')
 
 
+def signup(request):
+    return render(request, 'signup.html')
+
+
+def signin(request):
+    return render(request, 'signin.html')
+
+
+def signout(request):
+    return render(request, 'index.html')
+
+
+def get_history(request):
+    return render(request, 'history.html')
+
+
+def upload(request):
+    return render(request, 'upload.html')
+
+
+def get_help(request):
+    return render(request, 'help.html')
+
+
 def get_result(request):
     if request.method == 'POST':
         text = request.POST.get('textfield', None)
