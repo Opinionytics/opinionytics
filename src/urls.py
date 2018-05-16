@@ -18,11 +18,14 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    path('analyze', views.input, name='input'),
-    path('analyze/', views.input, name='input'),
+    path('', views.index, name='index'),
+
+    path('analyze', views.analyze, name='analyze'),
+    path('analyze/', views.analyze, name='analyze'),
+
     path('get_result', views.get_result, name='result'),
     path('get_result/', views.get_result, name='result'),
+    
     path('admin', admin.site.urls),
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
 ]

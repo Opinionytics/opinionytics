@@ -39,24 +39,24 @@ all_features_view = All_features_view(client, pytrends, natural_language_underst
 def index(request):
     return render(request, 'index.html')
 
-def input(request):
-    return render(request, 'input.html')
+
+def analyze(request):
+    return render(request, 'analyze.html')
 
 
 def get_result(request):
-    result_text = ""
-    result_url = ""
     if request.method == 'POST':
         text = request.POST.get('textfield', None)
         url = request.POST.get('urlfield', None)
         if text != None:
             if len(text.split(" ")) > 50:
-                result_text += all_features_view.execute_text(text)
-                return render(request, 'result.html', {'result_text': result_text})
+                return render(request, 'result.html', {'result_text': all_features_view.execute_text(text)})
+            else:
+                return HttpResponseRedirect("../analyze/")
+        else:
+                return HttpResponseRedirect("../analyze/") 
+        if url != None:
+            return render(request, 'result.html', {'result_url': all_features_view.execute_url(url)})
         else:
             return HttpResponseRedirect("../analyze/") 
-        if url != None:
-            result_url += all_features_view.execute_url(url)
-            return render(request, 'result.html', {'result_url': result_url})
-        
         
