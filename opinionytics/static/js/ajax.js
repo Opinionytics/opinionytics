@@ -1,51 +1,17 @@
-var form=$("#analyzeForm");
-form.submit(function(event) {
+$("#analyzeForm").submit(function(event) {
     event.preventDefault();
+    var form = $(event.target);
     var formData = form.serialize();
-    alert(formData);
 
     $.ajax({
-        dataType: "json",
         type: 'POST',
-        url: 'http://localhost:8000/getText/',
-        data: formData
+        url: '/get_result_text',
+        data: formData,
+        timeout: 100000
     }).done(function(response) {
-        console.log(response.resultat)
-        if(response.resultat) {
-            $(location).attr('href', 'tableau_de_bord.html')
-        }
+        console.log(response);
     }).fail(function(response) {
-        alert("Erreur réseau. Veuillez vérifier votre connexion.")
-    })
+        console.log(response);
+        alert("Erreur réseau. Veuillez vérifier votre connexion.");
+    });
 });
-
-var emailInput = $('#inscriptionForm input[name=email]')
-emailInput.focusout(function(event) {
-    $.ajax({
-        dataType: "json",
-        type: 'POST',
-        url: 'ActionServlet',
-        data: { 
-            email: emailInput.get(0).value,
-            action: 'verifExiste'
-        }
-    }).done(function(response) {
-        if(response.resultat)
-            emailInput.get(0).setCustomValidity("Adresse e-mail déjà utilisée, veuillez en essayer une autre")
-        else
-            emailInput.get(0).setCustomValidity("")
-    })
-})
-
-function verifierEgal(champ1, champ2, message) {
-    champ2.focusout(function(event) {
-        if(champ1.get(0).value != champ2.get(0).value)
-            champ2.get(0).setCustomValidity(message)
-        else
-            champ2.get(0).setCustomValidity("")
-    })
-}
-
-verifierEgal($('#inscriptionForm input[name=email]'), $('#inscriptionForm input[name=emailconf]'), "Deux adresses e-mail différentes ont été entrées")
-verifierEgal($('#inscriptionForm input[name=mdp]'), $('#inscriptionForm input[name=mdpconf]'), "Deux mots de passe différents ont été entrées")
-

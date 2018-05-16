@@ -72,7 +72,7 @@ def get_result_text(request):
         
         if text != None:
             if len(text.split(" ")) > 50:
-                return render(request, 'result.html', {'result': all_features_view.execute_text(text)})
+                return HttpResponse(json.dumps(all_features_view.execute_text(text)), content_type="application/json")
             else:
                 return HttpResponseRedirect("../analyze/")
         
@@ -81,4 +81,4 @@ def get_result_url(request):
     if request.method == 'POST':
         url = request.POST.get('urlfield', None)
         if url != None:
-            return render(request, 'result.html', {'result': all_features_view.execute_url(url)})
+            return HttpResponse(json.dumps(all_features_view.execute_url(url)), content_type="application/json")
