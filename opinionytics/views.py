@@ -31,55 +31,54 @@ pytrends = TrendReq(hl='en-US', tz=360)
 all_features_view = All_features_view(client, pytrends, natural_language_understanding)
 
 def index(request):
-    return render(request, 'index.html')
+    return 
 
 
 def about(request):
-    return render(request, 'about.html')
+    return 
 
 
 def services(request):
-    return render(request, 'services.html')
+    return
 
 
 def analyze_text(request):
-    return render(request, 'analyze-text.html')
+    return 
 
 
 def analyze(request):
-    return render(request, 'analyze.html')
+    return
 
 
 def analyze_url(request):
-    return render(request, 'analyze-url.html')
+    return 
 
 
 def analyze_data(request):
-    return render(request, 'analyze-data.html')
-
+    return 
 
 def signup(request):
-    return render(request, 'signup.html')
+    return 
 
 
 def signin(request):
-    return render(request, 'signin.html')
+    return 
 
 
 def signout(request):
-    return render(request, 'index.html')
+    return 
 
 
 def get_history(request):
-    return render(request, 'history.html')
+    return
 
 
 def get_help(request):
-    return render(request, 'help.html')
+    return
 
 
 def contact(request):
-    return render(request, 'contact.html')
+    return
 
 
 def get_result_text(request):

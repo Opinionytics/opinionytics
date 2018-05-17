@@ -60,6 +60,17 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <h1 class="mt-5">Sign In</h1>
+
+          <form id="signInForm" method="POST" action ="/signin/">
+            {% csrf_token %}
+
+            <input type="text" placeholder="enter login" name="textfield" class=".input-lg"></br>
+            <input type="password" placeholder="enter password" name="passwordfield" class=".input-lg"></br>
+  
+            <button type="submit" class="btn">Sign In</button>
+          </form>
+
+
         </div>
       </div>
     </div>
