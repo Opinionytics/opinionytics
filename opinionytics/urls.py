@@ -54,9 +54,6 @@ urlpatterns = [
     path('history', views.get_history, name='history'),
     path('history/', views.get_history, name='history'),
     
-    path('upload', views.upload, name='upload'),
-    path('upload/', views.upload, name='upload'),
-    
     path('help', views.get_help, name='help'),
     path('help/', views.get_help, name='help'),
 

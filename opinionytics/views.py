@@ -74,10 +74,6 @@ def get_history(request):
     return render(request, 'history.html')
 
 
-def upload(request):
-    return render(request, 'upload.html')
-
-
 def get_help(request):
     return render(request, 'help.html')
 
