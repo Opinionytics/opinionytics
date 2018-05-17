@@ -30,6 +30,9 @@ urlpatterns = [
     path('services', views.services, name='services'),
     path('services/', views.services, name='services'),
 
+    path('analyze', views.analyze, name='analyze'),
+    path('analyze/', views.analyze, name='analyze'),
+
     path('analyze-text', views.analyze_text, name='analyze-text'),
     path('analyze-text/', views.analyze_text, name='analyze-text'),
 

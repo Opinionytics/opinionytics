@@ -46,6 +46,10 @@ def analyze_text(request):
     return render(request, 'analyze-text.html')
 
 
+def analyze(request):
+    return render(request, 'analyze.html')
+
+
 def analyze_url(request):
     return render(request, 'analyze-url.html')
 
