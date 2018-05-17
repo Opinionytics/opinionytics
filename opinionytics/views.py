@@ -50,6 +50,10 @@ def analyze_url(request):
     return render(request, 'analyze-url.html')
 
 
+def analyze_data(request):
+    return render(request, 'analyze-data.html')
+
+
 def signup(request):
     return render(request, 'signup.html')
 
@@ -93,3 +97,12 @@ def get_result_url(request):
         url = request.POST.get('urlfield', None)
         if url != None:
             return HttpResponse(json.dumps(all_features_view.execute_url(url)), content_type="application/json")
+
+
+def get_result_data(request):
+    if request.method == 'POST':
+        url = request.POST.get('datafield', None)
+        if url != None:
+            # Todo
+            # return HttpResponse(json.dumps(all_features_view.execute_data(data)), content_type="application/json")
+            return

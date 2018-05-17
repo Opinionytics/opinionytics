@@ -35,6 +35,9 @@ urlpatterns = [
 
     path('analyze-url', views.analyze_url, name='analyze-url'),
     path('analyze-url/', views.analyze_url, name='analyze-url'),
+
+    path('analyze-data', views.analyze_data, name='analyze-data'),
+    path('analyze-data/', views.analyze_data, name='analyze-data'),
     
     path('signup', views.signup, name='signup'),
     path('signup/', views.signup, name='signup'),

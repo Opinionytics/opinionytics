@@ -5,7 +5,7 @@ $("#analyzeForm").submit(function(event) {
 
     $.ajax({
         type: 'POST',
-        url: '/get_result_text',
+        url: '/get_result_text/',
         data: formData,
         timeout: 100000
     }).done(function(response) {
