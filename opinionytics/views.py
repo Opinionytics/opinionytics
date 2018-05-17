@@ -34,6 +34,14 @@ def index(request):
     return render(request, 'index.html')
 
 
+def about(request):
+    return render(request, 'about.html')
+
+
+def services(request):
+    return render(request, 'services.html')
+
+
 def analyze_text(request):
     return render(request, 'analyze-text.html')
 
@@ -66,10 +74,13 @@ def get_help(request):
     return render(request, 'help.html')
 
 
+def contact(request):
+    return render(request, 'contact.html')
+
+
 def get_result_text(request):
     if request.method == 'POST':
         text = request.POST.get('textfield', None)
-        
         if text != None:
             if len(text.split(" ")) > 50:
                 return HttpResponse(json.dumps(all_features_view.execute_text(text)), content_type="application/json")
