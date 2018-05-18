@@ -17,6 +17,7 @@ class All_features_view:
 
     def __str__(self):
         return "All features view"
+        
 
     def execute_text(self, text):
         summary = self.summaryGenerator.getSummary(text=text)
