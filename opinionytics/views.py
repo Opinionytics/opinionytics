@@ -1,7 +1,9 @@
+from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseNotFound, Http404,  HttpResponseRedirect
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
+from django.contrib.auth.models import User
 
 from opinionytics.all_views.All_features_view import *
 
@@ -58,10 +60,34 @@ def analyze_data(request):
 
 
 def signup(request):
+    if request.method == "POST":
+        email=request.POST['email']
+        password=request.POST['password']
+        first_name=request.POST['firstName']
+        last_name = request.POST['lastName']
+        user = User.objects.create_user(email,email,password)
+        user.first_name = first_name
+        user.last_name = last_name
+        try:
+            user.save()
+        except Exception as e:
+            print()
+            #TODO
+
+
     return render(request, 'signup.html')
 
 
 def signin(request):
+    if request.method == "POST":
+        username = request.POST['textfield']
+        password = request.POST['passwordfield']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            print("ok")
+            return redirect("../analyze")
+        # TODO
     return render(request, 'signin.html')
 
 
