@@ -1,23 +1,4 @@
-$("#analyzeForm").submit(function(event) {
-    event.preventDefault();
-    var form = $(event.target);
-    var formData = form.serialize();
 
-    $('#message').html('Analyzing...');
-
-    $.ajax({
-        type: 'POST',
-        url: form.attr('action'),
-        data: formData,
-        timeout: 100000
-    }).done(function(response) {
-        console.log(response);
-        window.location = "result";
-    }).fail(function(response) {
-        console.log(response);
-        alert("Network error. Please check your connection.");
-    });
-});
 
 
 $("#signInForm").submit(function(event) {
