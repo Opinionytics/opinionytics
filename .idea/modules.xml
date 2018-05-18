@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/WebOpinionitycs.iml" filepath="$PROJECT_DIR$/.idea/WebOpinionitycs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/opinionytics.iml" filepath="$PROJECT_DIR$/.idea/opinionytics.iml" />
     </modules>
   </component>
 </project>
