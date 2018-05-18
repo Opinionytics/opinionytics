@@ -24,7 +24,7 @@ $("#signInForm").submit(function(event) {
 
     $.ajax({
         type: 'POST',
-        url: '/signin/',
+        url: form.attr('action'),
         data: formData,
         timeout: 100000
     }).done(function(response) {
@@ -43,7 +43,7 @@ $("#signUpForm").submit(function(event) {
 
     $.ajax({
         type: 'POST',
-        url: '/signup/',
+        url: form.attr('action'),
         data: formData,
         timeout: 100000
     }).done(function(response) {
@@ -62,7 +62,7 @@ $("#contactForm").submit(function(event) {
 
     $.ajax({
         type: 'POST',
-        url: '/contact/',
+        url: form.attr('action'),
         data: formData,
         timeout: 100000
     }).done(function(response) {
