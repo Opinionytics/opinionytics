@@ -11,7 +11,6 @@ from watson_developer_cloud.natural_language_understanding_v1 import Features, C
 from aylienapiclient import textapi
 
 
-
 APP_ID = "8ebd4c0e"
 APP_KEY = "707f70d4fe70e4e22210bfd824949ba9"
 
