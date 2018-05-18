@@ -5,14 +5,14 @@ $("#analyzeForm").submit(function(event) {
 
     $.ajax({
         type: 'POST',
-        url: '/get_result_text/',
+        url: form.attr('action'),
         data: formData,
         timeout: 100000
     }).done(function(response) {
         console.log(response);
     }).fail(function(response) {
         console.log(response);
-        alert("Erreur réseau. Veuillez vérifier votre connexion.");
+        alert("Network error. Please check your connection.");
     });
 });
 
@@ -31,7 +31,7 @@ $("#signInForm").submit(function(event) {
         console.log(response);
     }).fail(function(response) {
         console.log(response);
-        alert("Erreur réseau. Veuillez vérifier votre connexion.");
+        alert("Network error. Please check your connection.");
     });
 });
 
@@ -50,7 +50,7 @@ $("#signUpForm").submit(function(event) {
         console.log(response);
     }).fail(function(response) {
         console.log(response);
-        alert("Erreur réseau. Veuillez vérifier votre connexion.");
+        alert("Network error. Please check your connection.");
     });
 });
 
@@ -69,6 +69,6 @@ $("#contactForm").submit(function(event) {
         console.log(response);
     }).fail(function(response) {
         console.log(response);
-        alert("Erreur réseau. Veuillez vérifier votre connexion.");
+        alert("Network error. Please check your connection.");
     });
 });
