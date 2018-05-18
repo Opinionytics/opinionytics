@@ -5,16 +5,17 @@ $("#analyzeForm").submit(function(event) {
 
     $.ajax({
         type: 'POST',
-        url: '/get_result_text/',
+        url: form.attr('action'),
         data: formData,
         timeout: 100000
     }).done(function(response) {
         console.log(response);
     }).fail(function(response) {
         console.log(response);
-        alert("Erreur réseau. Veuillez vérifier votre connexion.");
+        alert("Network error. Please check your connection.");
     });
 });
+
 
 $("#signInForm").submit(function(event) {
     event.preventDefault();
@@ -23,13 +24,51 @@ $("#signInForm").submit(function(event) {
 
     $.ajax({
         type: 'POST',
-        url: '/signin/',
+        url: form.attr('action'),
         data: formData,
         timeout: 100000
     }).done(function(response) {
         console.log(response);
     }).fail(function(response) {
         console.log(response);
-        alert("Erreur réseau. Veuillez vérifier votre connexion.");
+        alert("Network error. Please check your connection.");
+    });
+});
+
+
+$("#signUpForm").submit(function(event) {
+    event.preventDefault();
+    var form = $(event.target);
+    var formData = form.serialize();
+
+    $.ajax({
+        type: 'POST',
+        url: form.attr('action'),
+        data: formData,
+        timeout: 100000
+    }).done(function(response) {
+        console.log(response);
+    }).fail(function(response) {
+        console.log(response);
+        alert("Network error. Please check your connection.");
+    });
+});
+
+
+$("#contactForm").submit(function(event) {
+    event.preventDefault();
+    var form = $(event.target);
+    var formData = form.serialize();
+
+    $.ajax({
+        type: 'POST',
+        url: form.attr('action'),
+        data: formData,
+        timeout: 100000
+    }).done(function(response) {
+        console.log(response);
+    }).fail(function(response) {
+        console.log(response);
+        alert("Network error. Please check your connection.");
     });
 });
