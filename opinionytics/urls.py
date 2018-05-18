@@ -57,11 +57,14 @@ urlpatterns = [
     path('help', views.get_help, name='help'),
     path('help/', views.get_help, name='help'),
 
-    path('get_result_text', views.get_result_text, name='result'),
-    path('get_result_text/', views.get_result_text, name='result'),
+    path('result', views.result, name='result'),
+    path('result/', views.result, name='result'),
+
+    path('get_result_text', views.get_result_text, name='result-text'),
+    path('get_result_text/', views.get_result_text, name='result-text'),
     
-    path('get_result_url', views.get_result_url, name='result'),
-    path('get_result_url/', views.get_result_url, name='result'),
+    path('get_result_url', views.get_result_url, name='result-text'),
+    path('get_result_url/', views.get_result_url, name='result-text'),
 
     path('contact', views.contact, name='contact'),
     path('contact/', views.contact, name='contact'),

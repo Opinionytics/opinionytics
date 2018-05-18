@@ -107,6 +107,10 @@ def contact(request):
     return render(request, 'contact.html')
 
 
+def result(request):
+    return render(request, 'result.html')
+
+
 def get_result_text(request):
     if request.method == 'POST':
         text = request.POST.get('textfield', None)
@@ -121,7 +125,6 @@ def get_result_url(request):
     if request.method == 'POST':
         url = request.POST.get('urlfield', None)
         if url != None:
-            print(all_features_view.execute_url(url))
             return HttpResponse(json.dumps(all_features_view.execute_url(url)), content_type="application/json")
 
 

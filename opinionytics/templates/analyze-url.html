@@ -64,8 +64,12 @@
           <form id="analyzeForm" method="POST" action ="/get_result_url/">
             {% csrf_token %}
             <input type="url" placeholder="enter url" name="urlfield" class=".input-lg"></br>
+
+            <p class= "lead" id="message"></p>
   
-            <button type="submit" class="btn">Upload url</button>
+            <button type="submit" class="btn">Upload url</button></br>
+
+            
           </form>
         </div>
       </div>
