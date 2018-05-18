@@ -121,6 +121,7 @@ def get_result_url(request):
     if request.method == 'POST':
         url = request.POST.get('urlfield', None)
         if url != None:
+            print(all_features_view.execute_url(url))
             return HttpResponse(json.dumps(all_features_view.execute_url(url)), content_type="application/json")
 
 

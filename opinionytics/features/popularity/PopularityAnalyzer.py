@@ -69,7 +69,7 @@ class PopularityAnalyzer:
             row["concept"]=key
             row["popularity"]=val
             result.append(row)
-        return json.dumps(result,separators=(',',':'))
+        return result
 
     def __getPopularityFromData(self, data, numberConcepts=4):
         # TODO

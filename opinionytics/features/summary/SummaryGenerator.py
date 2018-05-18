@@ -35,7 +35,7 @@ class SummaryGenerator:
         for sentence in summary['sentences']:
             result += sentence + '\n'
 
-        return json.dumps({'summary': result})
+        return result
 
     ### Summarize text input with sentences percentage
 
@@ -44,7 +44,7 @@ class SummaryGenerator:
         result = ''
         for sentence in summary['sentences']:
             result += sentence + '\n'
-        return json.dumps({'summary': result})
+        return result
 
     ## Summarize an URL input
 
@@ -55,7 +55,7 @@ class SummaryGenerator:
         result = ''
         for sentence in summary['sentences']:
             result += sentence + '\n'
-        return json.dumps({'summary': result})
+        return result
 
     #### Summarize an URL input with sentences percentage
 
@@ -64,7 +64,7 @@ class SummaryGenerator:
         result = ''
         for sentence in summary['sentences']:
             result += sentence + '\n'
-        return json.dumps({'summary': result})
+        return result
 
     ## Summarize a JSON input
 

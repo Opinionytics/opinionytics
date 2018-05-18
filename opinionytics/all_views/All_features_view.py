@@ -3,7 +3,7 @@ from opinionytics.features.topicsInvolved.TopicClassifier import *
 from opinionytics.features.positivity.PositivityAnalyzer import *
 from opinionytics.features.subjectivity.SubjectivityAnalyzer import *
 from opinionytics.features.popularity.PopularityAnalyzer import *
-
+from .Analyze import Analyze
 
 
 class All_features_view:
@@ -19,24 +19,23 @@ class All_features_view:
         return "All features view"
 
     def execute_text(self, text):
-        result = ""
-        result += str(self.subjectivityAnalyzer.getSubjectivity(text=text))
-        result += str(self.positivityAnalyzer.getPositivity(text=text))
-        result += str(self.topicsClassifier.getTopics(text=text))
-        result += str(self.popularityAnalyzer.getPopularity(text=text))
-        result += str(self.summaryGenerator.getSummary(text=text))
-        return result
+        summary = self.summaryGenerator.getSummary(text=text)
+        subjectivity = self.subjectivityAnalyzer.getSubjectivity(text=text)
+        positivity = self.positivityAnalyzer.getPositivity(text=text)
+        topics = self.topicsClassifier.getTopics(text=text)
+        popularity = self.popularityAnalyzer.getPopularity(text=text)
+        analyze = Analyze(summary, subjectivity, positivity, topics, popularity)
+        return analyze.get_analyze()
 
 
     def execute_url(self, url):
-        result = ""
-        result += str(self.subjectivityAnalyzer.getSubjectivity(url=url))
-        result += str(self.positivityAnalyzer.getPositivity(url=url))
-        result += str(self.topicsClassifier.getTopics(url=url))
-        result += str(self.popularityAnalyzer.getPopularity(url=url))
-        result += str(self.summaryGenerator.getSummary(url=url))
-        return result
-
+        summary = self.summaryGenerator.getSummary(url=url)
+        subjectivity = self.subjectivityAnalyzer.getSubjectivity(url=url)
+        positivity = self.positivityAnalyzer.getPositivity(url=url)
+        topics = self.topicsClassifier.getTopics(url=url)
+        popularity = self.popularityAnalyzer.getPopularity(url=url)
+        analyze = Analyze(summary, subjectivity, positivity, topics, popularity)
+        return analyze.get_analyze()
 
     def execute_data(self, data):
         data
