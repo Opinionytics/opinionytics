@@ -1,0 +1,18 @@
+{% load static %}
+
+<head>
+
+    <!-- code to include the highcharts and jQuery libraries goes here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- load_charts filter takes a comma-separated list of id's where -->
+    <!-- the charts need to be rendered to                             -->
+
+<head>
+        {% load chartit %}
+        {{ chart_list|load_charts:"chart_1,chart_2" }}
+    </head>
+    <body>
+        <div id="chart_1">First chart will be rendered here</div>
+        <div id="chart_2">Second chart will be rendered here</div>
+    </body>

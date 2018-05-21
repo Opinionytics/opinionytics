@@ -1,9 +1,16 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseNotFound, Http404,  HttpResponseRedirect
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, render_to_response
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+from django.db import connections
+from django.views.generic import TemplateView
+from django.db.models import Count
+
+from chartjs.views.lines import BaseLineChartView
+from chartit import DataPool, Chart
+from .models import *
 
 from opinionytics.all_views.All_features_view import *
 
@@ -11,6 +18,9 @@ from pytrends.request import TrendReq
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 import Features, ConceptsOptions
 from aylienapiclient import textapi
+
+from django.db.models import Avg
+from chartit import PivotDataPool, PivotChart
 
 
 APP_ID = "8ebd4c0e"
@@ -125,6 +135,10 @@ def get_result_url(request):
     if request.method == 'POST':
         url = request.POST.get('urlfield', None)
         if url != None:
+            for concepts in all_features_view.execute_url(url)['popularity']:
+                concept = concepts["concept"]
+                for date, score in concepts["popularity"].items():
+                    test = Popularity.objects.create(concept=concept, date=date, score=score)
             return render(request, 'result.html', all_features_view.execute_url(url))
 
 
@@ -135,3 +149,123 @@ def get_result_data(request):
             # Todo
             # return HttpResponse(json.dumps(all_features_view.execute_data(data)), content_type="application/json")
             return
+
+
+def charts(request):
+    # Step 1: Create a DataPool with the data we want to retrieve.
+    test = MonthlyWeatherByCity.objects.create(month = 2, boston_temp = 1.1, houston_temp = 1.1)
+    test = DailyWeather.objects.create(month = 1,day = 1, temperature = 1.1, rainfall = 1.1, city = 'a', state = 'a')
+
+
+    weatherdata = \
+        DataPool(
+           series=
+            [{'options': {
+               'source': MonthlyWeatherByCity.objects.all()},
+              'terms': [
+                'month',
+                'houston_temp',
+                'boston_temp']}
+             ])
+
+    #Step 2: Create the Chart object
+    cht = Chart(
+            datasource = weatherdata,
+            series_options =
+              [{'options':{
+                  'type': 'line',
+                  'stacking': False},
+                'terms':{
+                  'month': [
+                    'boston_temp',
+                    'houston_temp']
+                  }}],
+            chart_options =
+              {'title': {
+                   'text': 'Weather Data of Boston and Houston'},
+               'xAxis': {
+                    'title': {
+                       'text': 'Month number'}}})
+
+        # Step 1: Create a PivotDataPool with the data we want to retrieve.
+            
+    rainpivotdata = PivotDataPool(
+        series=[{
+            'options': {
+                'source': DailyWeather.objects.all(),
+                'categories': ['month'],
+                'legend_by': 'city',
+                'top_n_per_cat': 3,
+            },
+            'terms': {
+                'avg_rain': Avg('rainfall'),
+            }
+        }]
+    )
+
+    # Step 2: Create the PivotChart object
+    rain = PivotChart(
+        datasource=rainpivotdata,
+        series_options=[{
+            'options': {
+                'type': 'column',
+                'stacking': True
+            },
+            'terms': ['avg_rain']
+        }],
+        chart_options={
+            'title': {
+                'text': 'Rain by Month in top 3 cities'
+            },
+            'xAxis': {
+                'title': {
+                    'text': 'Month'
+                }
+            }
+        }
+    )
+
+    # Step 3: Send the PivotChart object to the template.
+    return render(request, 'test.html',
+             {
+                'chart_list' : [cht, rain],
+             }
+        )
+
+
+def popularity_chart(request):
+    # Step 1: Create a DataPool with the data we want to retrieve.
+    popularity_data = \
+        DataPool(
+           series=
+            [{'options': {
+               'source': Popularity.objects.all()},
+              'terms': [
+                'concept',
+                'date',
+                'score']}
+             ])
+
+    #Step 2: Create the Chart object
+    cht = Chart(
+            datasource = popularity_data,
+            series_options =
+              [{'options':{
+                  'type': 'line',
+                  'stacking': False},
+                'terms':{
+                  'concept': [
+                    'date',
+                    'score']
+                  }}],
+            chart_options =
+              {'title': {
+                   'text': 'Popularity'},
+               'xAxis': {
+                    'title': {
+                       'text': 'Time'}}})
+    return render(request, 'test.html',
+             {
+                'chart_list' : [cht, cht],
+             }
+        )

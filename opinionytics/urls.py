@@ -20,6 +20,11 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
+
+    path('popularity_chart', views.popularity_chart, name='popularity_chart'),
+    
+    path('charts', views.charts, name='charts'),
+
     path('', views.index, name='index'),
     path('index', views.index, name='index'),
     path('index/', views.index, name='index'),
@@ -63,8 +68,8 @@ urlpatterns = [
     path('get_result_text', views.get_result_text, name='result-text'),
     path('get_result_text/', views.get_result_text, name='result-text'),
     
-    path('get_result_url', views.get_result_url, name='result-text'),
-    path('get_result_url/', views.get_result_url, name='result-text'),
+    path('get_result_url', views.get_result_url, name='result-url'),
+    path('get_result_url/', views.get_result_url, name='result-url'),
 
     path('contact', views.contact, name='contact'),
     path('contact/', views.contact, name='contact'),

@@ -61,13 +61,12 @@ class PopularityAnalyzer:
         self.pytrends.build_payload(kw_list, cat=0, timeframe='today 1-m', geo='', gprop='')
         data = self.pytrends.interest_over_time()
         data = data.drop('isPartial', axis=1)
-        print(data)
         dict_datas = data.to_dict()
         result = []
         for key,val in dict_datas.items():
             row = {}
             row["concept"]=key
-            row["popularity"]=val
+            row["popularity"] = val
             result.append(row)
         return result
 
