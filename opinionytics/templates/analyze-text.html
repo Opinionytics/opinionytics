@@ -59,13 +59,12 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h1 class="mt-5">Analyze</h1>
-          <p class="lead">Text</p>
-          <form id="analyzeForm" method="POST" action ="/get_result_text/">
+          <h1 class="mt-5">Analyze</h1><br/>
+          <form id="analyzeForm" method="POST" action ="/get_result_text">
             {% csrf_token %}
-            <input type="text" placeholder="enter text" name="textfield" class=".input-lg"></br>
+            <textarea type="text" placeholder="Enter text" name="textfield" class="form-control" rows=5></textarea></br>
   
-            <button type="submit" class="btn">Upload text</button>
+            <button type="submit" class="btn btn-primary">Upload text</button>
           </form>
         </div>
       </div>

@@ -61,13 +61,13 @@
         <div class="col-lg-12 text-center">
           <h1 class="mt-5">Analyze</h1>
           <p class="lead">Url</p>
-          <form id="analyzeForm" method="POST" action ="/get_result_url/">
+          <form id="analyzeForm" method="POST" action ="/get_result_url">
             {% csrf_token %}
-            <input type="url" placeholder="enter url" name="urlfield" class=".input-lg"></br>
+            <input type="url" placeholder="enter url" name="urlfield" class="form-control"></br>
 
             <p class= "lead" id="message"></p>
   
-            <button type="submit" class="btn" id='analyze-button'>Upload url</button></br>
+            <button type="submit" class="btn btn-primary" id='analyze-button'>Upload url</button></br>
 
             
           </form>

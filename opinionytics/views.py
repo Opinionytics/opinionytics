@@ -289,7 +289,8 @@ def all_charts(request):
             'yAxis': {
                 'title': {
                     'text': 'Confidence'
-                }
+                },
+                'max': 1
             }
         }
     )
@@ -333,7 +334,8 @@ def all_charts(request):
             'yAxis': {
                 'title': {
                     'text': 'Confidence'
-                }
+                },
+                'max': 1
             }
         }
     )
@@ -377,7 +379,8 @@ def all_charts(request):
             'yAxis': {
                 'title': {
                     'text': 'Confidence'
-                }
+                },
+                'max': 1
             }
         }
     )
