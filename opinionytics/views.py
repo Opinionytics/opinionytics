@@ -233,7 +233,7 @@ def all_charts(request):
         }],
         chart_options={
             'title': {
-                'text': 'Polarity of the text'
+                'text': 'Polarity'
             },
             'xAxis': {
                 'title': {
@@ -277,7 +277,7 @@ def all_charts(request):
         }],
         chart_options={
             'title': {
-                'text': 'Topics involved in the text'
+                'text': 'Topics involved '
             },
             'xAxis': {
                 'title': {
@@ -321,7 +321,7 @@ def all_charts(request):
         }],
         chart_options={
             'title': {
-                'text': 'Subjectivity of the text'
+                'text': 'Subjectivity'
             },
             'xAxis': {
                 'title': {
