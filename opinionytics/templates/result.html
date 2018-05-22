@@ -33,8 +33,9 @@
 
 
     {% load chartit %}
-    {{ popularity |load_charts:"popularity"}}
+    {{ chart_list |load_charts:"popularity, polarity, topics, subjectivity"}}
 
+    
   </head>
 
   <body>
@@ -87,28 +88,22 @@
             </div>
             <div class="card" id="positivity">
                 <div class="card-body">
-                        <h5 class="card-title">Positivity</h5>
-                        <p class="card-text">
-                            {{positivity}}    
-                        </p>
+                        <h5 class="card-title">Polarity</h5>
+                        <div id="polarity">PopPolarityularity</div>
                         <a href="#" class="btn btn-primary">See all details</a>
                 </div>
             </div>
             <div class="card" id="topics">
                 <div class="card-body">
                     <h5 class="card-title">Topics involved</h5>
-                    <p class="card-text">
-                        {{topics}}    
-                    </p>
+                    <div id="topics">Topics Involved</div>
                     <a href="#" class="btn btn-primary">See all details</a>
                 </div>
             </div>
             <div class="card" id="subjectivity">
                 <div class="card-body">
                     <h5 class="card-title">Subjectivity</h5>
-                    <p class="card-text">
-                        {{subjectivity}}    
-                    </p>
+                    <div id="subjectivity">Subjectivity</div>
                     <a href="#" class="btn btn-primary">See all details</a>
                 </div>
             </div>

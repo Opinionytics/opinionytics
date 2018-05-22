@@ -8,10 +8,12 @@
     <!-- load_charts filter takes a comma-separated list of id's where -->
     <!-- the charts need to be rendered to                             -->
 
-        {% load chartit %}
-        {{ chart_list|load_charts:"chart_1,chart_2" }}
+    {% load chartit %}
+    {{ chart_list |load_charts:"popularity, polarity, topics, subjectivity"}}
     </head>
     <body>
-        <div id="chart_1">First chart will be rendered here</div>
-        <div id="chart_2">Second chart will be rendered here</div>
+        <div id="popularity">First chart will be rendered here</div>
+        <div id="polarity">Second chart will be rendered here</div>
+        <div id="topics">Second chart will be rendered here</div>
+        <div id="subjectivity">Second chart will be rendered here</div>
     </body>

@@ -21,10 +21,8 @@ from . import views
 
 urlpatterns = [
 
-    path('test_charts', views.test_charts, name='test_charts'),
+    # path('test_charts', views.test_charts, name='test_charts'),
     
-    path('charts', views.charts, name='charts'),
-
     path('', views.index, name='index'),
     path('index', views.index, name='index'),
     path('index/', views.index, name='index'),

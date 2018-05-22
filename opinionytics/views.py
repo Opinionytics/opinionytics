@@ -130,16 +130,33 @@ def get_result_url(request):
     if request.method == 'POST':
         url = request.POST.get('urlfield', None)
         if url != None:
-            Popularity.objects.all().delete()
             analyze = all_features_view.execute_url(url)
             summary = analyze['summary']
+            Popularity.objects.all().delete()
+            Polarity.objects.all().delete()
+            Topics.objects.all().delete()
+            Subjectivity.objects.all().delete()
+            polarity = analyze['positivity']
+            topics = analyze['topics']
+            subjectivity = analyze['subjectivity']
+
             for concepts in analyze['popularity']:
                 concept = concepts["concept"]
                 for date, score in concepts["popularity"].items():
-                    test = Popularity.objects.create(concept=concept, date=str(date).split()[0], score=score)
-            return render(request, 'result.html', { 
-                'popularity' : popularity_chart(request), 
+                    Popularity.objects.create(concept=concept, date=str(date).split()[0], score=score)
+
+            Polarity.objects.create(polarity=polarity['polarity'], confidence=polarity['polarity_confidence'])
+
+            for concept in topics:            
+                Topics.objects.create(topics=concept['label'], confidence=concept['confidence'])
+
+            Subjectivity.objects.create(subjectivity=subjectivity['subjectivity'], confidence=subjectivity['subjectivity_confidence'])
+            
+            chart_list = all_charts(request)
+
+            return render(request, 'result.html', {     
                 'summary' : summary,
+                'chart_list' : chart_list,
                 }
             )
 
@@ -152,62 +169,61 @@ def get_result_data(request):
             # return HttpResponse(json.dumps(all_features_view.execute_data(data)), content_type="application/json")
             return
 
+def all_charts(request):
 
-def charts(request):
+    # Popularity
+
     # Step 1: Create a DataPool with the data we want to retrieve.
-    test = MonthlyWeatherByCity.objects.create(month = 2, boston_temp = 1.1, houston_temp = 1.1)
-    test = DailyWeather.objects.create(month = 1,day = 1, temperature = 1.1, rainfall = 1.1, city = 'a', state = 'a')
-
-
-    weatherdata = \
+    popularity_data = \
         DataPool(
            series=
             [{'options': {
-               'source': MonthlyWeatherByCity.objects.all()},
+               'source': Popularity.objects.all()},
               'terms': [
-                'month',
-                'houston_temp',
-                'boston_temp']}
+                'concept',
+                'date',
+                'score']}
              ])
 
     #Step 2: Create the Chart object
-    cht = Chart(
-            datasource = weatherdata,
+    popularity = Chart(
+            datasource = popularity_data,
             series_options =
               [{'options':{
                   'type': 'line',
                   'stacking': False},
                 'terms':{
-                  'month': [
-                    'boston_temp',
-                    'houston_temp']
+                  'date': [
+                    'score']
                   }}],
             chart_options =
               {'title': {
-                   'text': 'Weather Data of Boston and Houston'},
+                   'text': 'The popularity over a period of time'},
                'xAxis': {
                     'title': {
-                       'text': 'Month number'}}})
+                       'text': 'Time'}}})
 
-        # Step 1: Create a PivotDataPool with the data we want to retrieve.
-            
-    rainpivotdata = PivotDataPool(
+
+    # Polarity 
+
+    # Step 1: Create a DataPool with the data we want to retrieve.
+    polaritydata = PivotDataPool(
         series=[{
             'options': {
-                'source': DailyWeather.objects.all(),
-                'categories': ['month'],
-                'legend_by': 'city',
+                'source': Polarity.objects.all(),
+                'categories': ['confidence'],
+                'legend_by': 'polarity',
                 'top_n_per_cat': 3,
             },
             'terms': {
-                'avg_rain': Avg('rainfall'),
+                'avg_rain': Avg('confidence'),
             }
         }]
     )
 
-    # Step 2: Create the PivotChart object
-    rain = PivotChart(
-        datasource=rainpivotdata,
+    #Step 2: Create the Chart object
+    polarity = PivotChart(
+        datasource=polaritydata,
         series_options=[{
             'options': {
                 'type': 'column',
@@ -217,89 +233,107 @@ def charts(request):
         }],
         chart_options={
             'title': {
-                'text': 'Rain by Month in top 3 cities'
+                'text': 'Polarity of the text'
             },
             'xAxis': {
                 'title': {
-                    'text': 'Month'
+                    'text': 'Polarity'
+                },
+            },
+            'yAxis': {
+                'title': {
+                    'text': 'Confidence'
                 }
             }
         }
     )
 
-    # Step 3: Send the PivotChart object to the template.
-    return render(request, 'test.html',
-             {
-                'chart_list' : [cht, rain],
-             }
-        )
+    # Topics involved
 
-
-def popularity_chart(request):
     # Step 1: Create a DataPool with the data we want to retrieve.
-    popularity_data = \
-        DataPool(
-           series=
-            [{'options': {
-               'source': Popularity.objects.all()},
-              'terms': [
-                'concept',
-                'date',
-                'score']}
-             ])
+    topicsdata = PivotDataPool(
+        series=[{
+            'options': {
+                'source': Topics.objects.all(),
+                'categories': ['confidence'],
+                'legend_by': 'topics',
+                'top_n_per_cat': 3,
+            },
+            'terms': {
+                'avg_rain': Avg('confidence'),
+            }
+        }]
+    )
 
     #Step 2: Create the Chart object
-    cht = Chart(
-            datasource = popularity_data,
-            series_options =
-              [{'options':{
-                  'type': 'line',
-                  'stacking': False},
-                'terms':{
-                  'date': [
-                    'score']
-                  }}],
-            chart_options =
-              {'title': {
-                   'text': 'The popularity over a period of time'},
-               'xAxis': {
-                    'title': {
-                       'text': 'Time'}}})
-    return cht
+    topics = PivotChart(
+        datasource=topicsdata,
+        series_options=[{
+            'options': {
+                'type': 'column',
+                'stacking': True
+            },
+            'terms': ['avg_rain']
+        }],
+        chart_options={
+            'title': {
+                'text': 'Topics involved in the text'
+            },
+            'xAxis': {
+                'title': {
+                    'text': 'Topics involved'
+                },
+            },
+            'yAxis': {
+                'title': {
+                    'text': 'Confidence'
+                }
+            }
+        }
+    )
 
+    # Subjectivity
 
-def test_charts(request):
     # Step 1: Create a DataPool with the data we want to retrieve.
-    popularity_data = \
-        DataPool(
-           series=
-            [{'options': {
-               'source': Popularity.objects.all()},
-              'terms': [
-                'concept',
-                'date',
-                'score']}
-             ])
+    subjectivitydata = PivotDataPool(
+        series=[{
+            'options': {
+                'source': Subjectivity.objects.all(),
+                'categories': ['confidence'],
+                'legend_by': 'subjectivity',
+                'top_n_per_cat': 3,
+            },
+            'terms': {
+                'avg_rain': Avg('confidence'),
+            }
+        }]
+    )
 
     #Step 2: Create the Chart object
-    cht = Chart(
-            datasource = popularity_data,
-            series_options =
-              [{'options':{
-                  'type': 'line',
-                  'stacking': False},
-                'terms':{
-                  'date': [
-                    'score']
-                  }}],
-            chart_options =
-              {'title': {
-                   'text': 'The popularity over a period of time'},
-               'xAxis': {
-                    'title': {
-                       'text': 'Time'}}})
-    return render(request, 'test.html',
-             {
-                'chart_list' : [cht, cht],
-             }
-        )
+    subjectivity = PivotChart(
+        datasource=subjectivitydata,
+        series_options=[{
+            'options': {
+                'type': 'column',
+                'stacking': True
+            },
+            'terms': ['avg_rain']
+        }],
+        chart_options={
+            'title': {
+                'text': 'Subjectivity of the text'
+            },
+            'xAxis': {
+                'title': {
+                    'text': 'Subjectivity'
+                },
+            },
+            'yAxis': {
+                'title': {
+                    'text': 'Confidence'
+                }
+            }
+        }
+    )
+ 
+    return [popularity, polarity, topics, subjectivity]
