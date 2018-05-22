@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ```python 3```
 ```django 2```
-```Chart.js```
+```Django Chartit```
 
 ## Installing
 
@@ -35,10 +35,10 @@ git clone https://github.com/django/django.git
 pip install -e django/
 ```
 
-#### Installing Chart.js
+#### Installing Chartit Django
 
 ```
-npm install chart.js --save
+pip install django_chartit
 ```
 
 ### Clone the repository into an appropriate place
