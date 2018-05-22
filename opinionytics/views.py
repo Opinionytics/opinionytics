@@ -142,21 +142,28 @@ def get_result_url(request):
 
             for concepts in analyze['popularity']:
                 concept = concepts["concept"]
-                popularity_concept = concept
+                _concept = concept
                 for date, score in concepts["popularity"].items():
                     Popularity.objects.create(concept=concept, date=str(date).split()[0], score=score)
 
             Polarity.objects.create(polarity=polarity['polarity'], confidence=polarity['polarity_confidence'])
+            _polarity = polarity=polarity['polarity']
 
+            _topics = []
             for concept in topics:            
                 Topics.objects.create(topics=concept['label'], confidence=concept['confidence'])
+                _topics.append(concept['label'])
 
             Subjectivity.objects.create(subjectivity=subjectivity['subjectivity'], confidence=subjectivity['subjectivity_confidence'])
-            
+            _subjectivity = subjectivity['subjectivity']
+
             chart_list = all_charts(request)
 
             return render(request, 'result.html', {  
-                'concept' : popularity_concept,
+                'concept_' : _concept,
+                'topics_': [t for t in _topics],
+                'subjectivity_': _subjectivity,
+                'polarity_': _polarity,
                 'summary' : summary,
                 'chart_list' : chart_list,
                 }
@@ -200,7 +207,7 @@ def all_charts(request):
                   }}],
             chart_options =
               {'title': {
-                   'text': 'The popularity over a period of time'},
+                   'text': ''},
                'xAxis': {
                     'title': {
                        'text': 'Time'}}})
@@ -235,7 +242,7 @@ def all_charts(request):
         }],
         chart_options={
             'title': {
-                'text': 'Polarity'
+                'text': ''
             },
             'xAxis': {
                 'title': {
@@ -279,7 +286,7 @@ def all_charts(request):
         }],
         chart_options={
             'title': {
-                'text': 'Topics involved '
+                'text': ' '
             },
             'xAxis': {
                 'title': {
@@ -323,7 +330,7 @@ def all_charts(request):
         }],
         chart_options={
             'title': {
-                'text': 'Subjectivity'
+                'text': ''
             },
             'xAxis': {
                 'title': {
