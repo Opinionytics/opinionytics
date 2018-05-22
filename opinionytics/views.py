@@ -135,11 +135,12 @@ def get_result_url(request):
     if request.method == 'POST':
         url = request.POST.get('urlfield', None)
         if url != None:
+            Popularity.objects.all().delete()
             for concepts in all_features_view.execute_url(url)['popularity']:
                 concept = concepts["concept"]
                 for date, score in concepts["popularity"].items():
-                    test = Popularity.objects.create(concept=concept, date=date, score=score)
-            return render(request, 'result.html', all_features_view.execute_url(url))
+                    test = Popularity.objects.create(concept=concept, date=str(date).split()[0], score=score)
+            return render(request, 'result.html', popularity_chart(request))
 
 
 def get_result_data(request):
@@ -254,8 +255,7 @@ def popularity_chart(request):
                   'type': 'line',
                   'stacking': False},
                 'terms':{
-                  'concept': [
-                    'date',
+                  'date': [
                     'score']
                   }}],
             chart_options =
@@ -264,8 +264,4 @@ def popularity_chart(request):
                'xAxis': {
                     'title': {
                        'text': 'Time'}}})
-    return render(request, 'test.html',
-             {
-                'chart_list' : [cht, cht],
-             }
-        )
+    return {'popularity_chart' : cht}

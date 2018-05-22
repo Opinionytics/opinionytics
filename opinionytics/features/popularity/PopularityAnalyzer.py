@@ -55,7 +55,7 @@ class PopularityAnalyzer:
         concepts = response["concepts"]
         concepts = [k for k in concepts if k['relevance'] > 0.75]
         return concepts
-    
+     
     def __getPopularity(self,concepts):
         kw_list = [k['text'] for k in concepts]
         self.pytrends.build_payload(kw_list, cat=0, timeframe='today 1-m', geo='', gprop='')
