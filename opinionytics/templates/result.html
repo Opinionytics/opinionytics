@@ -14,6 +14,7 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/ajax.js" %}" >
 
     <!-- Custom styles for this template -->
     <style>
@@ -39,7 +40,6 @@
   </head>
 
   <body>
-      
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -70,40 +70,45 @@
         <div class="col-lg-12 text-center">
           <h1 class="mt-5">Analyze</h1>
           <p class="lead">Completed</p>
-            <div class="card" id="summary">
+            <div class="card" >
                 <div class="card-body">
                     <h5 class="card-title">Summary</h5>
                     <p class="card-text">
                         {{summary}}    
                     </p>
+                    <a href="#" class="btn btn-primary">See details</a>
                 </div>
            </div>
 
            <div class="card-group">
-                <div class="card" id="positivity">
+                <div class="card" >
                     <div class="card-body">
-                        <h5 class="card-title">Polarity</h5>
+                        <h5 class="card-title">Polarity </h5>
                         <div id="polarity"></div>
+                        <a href="#" class="btn btn-primary">See details</a>
                     </div>
                 </div>
-                <div class="card" id="topics">
+                <div class="card" >
                     <div class="card-body">
                         <h5 class="card-title">Topics involved</h5>
                         <div id="topics"> </div>
+                        <a href="#" class="btn btn-primary">See details</a>
                     </div>
                 </div>
-                <div class="card" id="subjectivity">
+                <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Subjectivity</h5>
                         <div id="subjectivity"></div>
+                        <a href="#" class="btn btn-primary">See details</a>
                     </div>
                 </div>
           </div>
 
-            <div class="card" id="popularity">
+            <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Popularity</h5>
+                    <h5 class="card-title">Popularity of {{concept}} </h5>
                     <div id="popularity" ></div>
+                    <a href="#" class="btn btn-primary">See details</a>
                 </div>
             </div>
             

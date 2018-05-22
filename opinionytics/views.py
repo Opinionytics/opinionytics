@@ -142,6 +142,7 @@ def get_result_url(request):
 
             for concepts in analyze['popularity']:
                 concept = concepts["concept"]
+                popularity_concept = concept
                 for date, score in concepts["popularity"].items():
                     Popularity.objects.create(concept=concept, date=str(date).split()[0], score=score)
 
@@ -154,7 +155,8 @@ def get_result_url(request):
             
             chart_list = all_charts(request)
 
-            return render(request, 'result.html', {     
+            return render(request, 'result.html', {  
+                'concept' : popularity_concept,
                 'summary' : summary,
                 'chart_list' : chart_list,
                 }
