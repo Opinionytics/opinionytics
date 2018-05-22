@@ -337,3 +337,11 @@ def all_charts(request):
     )
  
     return [popularity, polarity, topics, subjectivity]
+
+def test_charts(request):
+    chart_list = all_charts(request)
+    return render(request, 'test.html', {     
+            'summary' : 'Lorem ipsum',
+            'chart_list' : chart_list,
+            }
+        )
