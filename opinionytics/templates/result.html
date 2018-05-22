@@ -33,7 +33,7 @@
 
 
     {% load chartit %}
-    {{ popularity_chart|load_charts:"cht"}}
+    {{ popularity |load_charts:"popularity"}}
 
   </head>
 
@@ -82,7 +82,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Popularity</h5>
                   <p class="card-text">
-                      <div id="cht">Popularity</div>
+                      <div id="popularity">Popularity</div>
                 </div>
             </div>
             <div class="card" id="positivity">

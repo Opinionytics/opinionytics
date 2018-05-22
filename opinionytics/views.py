@@ -1,27 +1,22 @@
+from chartit import Chart, DataPool, PivotChart, PivotDataPool
+
+from aylienapiclient import textapi
+from chartjs.views.lines import BaseLineChartView
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse, HttpResponseNotFound, Http404,  HttpResponseRedirect
-from django.shortcuts import render, render_to_response
-from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.db import connections
+from django.db.models import Avg, Count
+from django.http import (Http404, HttpResponse, HttpResponseNotFound,
+                         HttpResponseRedirect, JsonResponse)
+from django.shortcuts import redirect, render, render_to_response
 from django.views.generic import TemplateView
-from django.db.models import Count
-
-from chartjs.views.lines import BaseLineChartView
-from chartit import DataPool, Chart
-from .models import *
-
 from opinionytics.all_views.All_features_view import *
-
-from pytrends.request import TrendReq 
+from pytrends.request import TrendReq
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
-from watson_developer_cloud.natural_language_understanding_v1 import Features, ConceptsOptions
-from aylienapiclient import textapi
+from watson_developer_cloud.natural_language_understanding_v1 import (ConceptsOptions,
+                                                                      Features)
 
-from django.db.models import Avg
-from chartit import PivotDataPool, PivotChart
-
+from .models import *
 
 APP_ID = "8ebd4c0e"
 APP_KEY = "707f70d4fe70e4e22210bfd824949ba9"
@@ -136,11 +131,17 @@ def get_result_url(request):
         url = request.POST.get('urlfield', None)
         if url != None:
             Popularity.objects.all().delete()
-            for concepts in all_features_view.execute_url(url)['popularity']:
+            analyze = all_features_view.execute_url(url)
+            summary = analyze['summary']
+            for concepts in analyze['popularity']:
                 concept = concepts["concept"]
                 for date, score in concepts["popularity"].items():
                     test = Popularity.objects.create(concept=concept, date=str(date).split()[0], score=score)
-            return render(request, 'result.html', popularity_chart(request))
+            return render(request, 'result.html', { 
+                'popularity' : popularity_chart(request), 
+                'summary' : summary,
+                }
+            )
 
 
 def get_result_data(request):
@@ -260,8 +261,45 @@ def popularity_chart(request):
                   }}],
             chart_options =
               {'title': {
-                   'text': 'Popularity'},
+                   'text': 'The popularity over a period of time'},
                'xAxis': {
                     'title': {
                        'text': 'Time'}}})
-    return {'popularity_chart' : cht}
+    return cht
+
+
+def test_charts(request):
+    # Step 1: Create a DataPool with the data we want to retrieve.
+    popularity_data = \
+        DataPool(
+           series=
+            [{'options': {
+               'source': Popularity.objects.all()},
+              'terms': [
+                'concept',
+                'date',
+                'score']}
+             ])
+
+    #Step 2: Create the Chart object
+    cht = Chart(
+            datasource = popularity_data,
+            series_options =
+              [{'options':{
+                  'type': 'line',
+                  'stacking': False},
+                'terms':{
+                  'date': [
+                    'score']
+                  }}],
+            chart_options =
+              {'title': {
+                   'text': 'The popularity over a period of time'},
+               'xAxis': {
+                    'title': {
+                       'text': 'Time'}}})
+    return render(request, 'test.html',
+             {
+                'chart_list' : [cht, cht],
+             }
+        )
