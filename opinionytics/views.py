@@ -1,7 +1,6 @@
 from chartit import Chart, DataPool, PivotChart, PivotDataPool
 
 from aylienapiclient import textapi
-from chartjs.views.lines import BaseLineChartView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.db import connections
