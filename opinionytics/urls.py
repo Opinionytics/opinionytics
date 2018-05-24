@@ -17,12 +17,11 @@ from django.urls import include, path
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
+
 from . import views
 
 urlpatterns = [
 
-    path('test_charts', views.test_charts, name='test_charts'),
-    
     path('', views.index, name='index'),
     path('index', views.index, name='index'),
     path('about', views.about, name='about'),
@@ -41,4 +40,5 @@ urlpatterns = [
     path('get_result_url', views.get_result_url, name='result-url'),
     path('contact', views.contact, name='contact'),
     path('admin', admin.site.urls)
+
 ]

@@ -15,6 +15,7 @@ class PopularityAnalyzer:
         self.pytrends = pytrends
         self.natural_language_understanding = natural_language_understanding
 
+
     def getPopularity(self,url=None,text=None,data=None,numberConcepts=4):
         try:
             if url is not None:
@@ -29,14 +30,12 @@ class PopularityAnalyzer:
             return None
         except WatsonInvalidArgument:
             return None
-    
-    
-
 
     def __getPopularityFromUrl(self, url, numberConcepts=4):
         concepts = self.__getConcepts(url=url, numberConcepts=numberConcepts)
 
         return self.__getPopularity(concepts)
+
 
     def __getPopularityFromText(self, text, numberConcepts=4):
 
@@ -56,6 +55,7 @@ class PopularityAnalyzer:
         concepts = [k for k in concepts if k['relevance'] > 0.75]
         return concepts
      
+
     def __getPopularity(self,concepts):
         kw_list = [k['text'] for k in concepts]
         self.pytrends.build_payload(kw_list, cat=0, timeframe='today 1-m', geo='', gprop='')
@@ -69,6 +69,7 @@ class PopularityAnalyzer:
             row["popularity"] = val
             result.append(row)
         return result
+
 
     def __getPopularityFromData(self, data, numberConcepts=4):
         # TODO

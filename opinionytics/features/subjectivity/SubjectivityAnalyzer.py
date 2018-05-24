@@ -7,6 +7,7 @@ class SubjectivityAnalyzer:
     def __init__(self,client):
         self.client = client
     
+
     def getSubjectivity(self,text=None,url=None,data=None):
         if url is not None:
             return self.__urlSubjectivity(url)
@@ -23,15 +24,15 @@ class SubjectivityAnalyzer:
         del sentiment['text'], sentiment['polarity'], sentiment['polarity_confidence']
         return sentiment
     
+
     ## Having the Subjectivity from URL input
-    
     def __urlSubjectivity(self, url):
         sentiment = self.client.Sentiment({"url": url}) 
         del sentiment['text'], sentiment['polarity'], sentiment['polarity_confidence']
         return sentiment
     
+
     ## Having the Subjectivity from JSON input
-    
     def __dataSubjectivity(self, data):
         data
         #TODO

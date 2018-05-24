@@ -1,6 +1,5 @@
 from chartit import Chart, DataPool, PivotChart, PivotDataPool
 
-from aylienapiclient import textapi
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.db import connections
@@ -9,11 +8,14 @@ from django.http import (Http404, HttpResponse, HttpResponseNotFound,
                          HttpResponseRedirect, JsonResponse)
 from django.shortcuts import redirect, render, render_to_response
 from django.views.generic import TemplateView
+
 from opinionytics.all_views.All_features_view import *
+
 from pytrends.request import TrendReq
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 import (ConceptsOptions,
                                                                       Features)
+from aylienapiclient import textapi
 
 from .models import *
 
@@ -214,6 +216,7 @@ def get_result_data(request):
             # return HttpResponse(json.dumps(all_features_view.execute_data(data)), content_type="application/json")
             return
 
+
 def all_charts(request):
 
     # Popularity
@@ -385,6 +388,7 @@ def all_charts(request):
     )
  
     return [popularity, polarity, topics, subjectivity]
+
 
 def test_charts(request):
     chart_list = all_charts(request)
