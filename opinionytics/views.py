@@ -24,18 +24,20 @@ APP_KEY = "707f70d4fe70e4e22210bfd824949ba9"
 
 client = textapi.Client(APP_ID, APP_KEY)
 
-USERNAME='ea1c5c7c-c39e-4af6-bcd5-b9103dc229a2'
-PASSWORD='Xl21Xq1EeDwW'
-VERSION='2017-02-27'
+USERNAME = 'ea1c5c7c-c39e-4af6-bcd5-b9103dc229a2'
+PASSWORD = 'Xl21Xq1EeDwW'
+VERSION = '2017-02-27'
 
 natural_language_understanding = NaturalLanguageUnderstandingV1(
     username=USERNAME,
     password=PASSWORD,
     version=VERSION)
 
-pytrends = TrendReq(hl='en-US', tz=360)
+pytrends = TrendReq(hl='en-US', tz=320)
 
-all_features_view = All_features_view(client, pytrends, natural_language_understanding)
+all_features_view = All_features_view(
+    client, pytrends, natural_language_understanding)
+
 
 def index(request):
     return render(request, 'index.html')
@@ -67,19 +69,18 @@ def analyze_data(request):
 
 def signup(request):
     if request.method == "POST":
-        email=request.POST['email']
-        password=request.POST['password']
-        first_name=request.POST['firstName']
+        email = request.POST['email']
+        password = request.POST['password']
+        first_name = request.POST['firstName']
         last_name = request.POST['lastName']
-        user = User.objects.create_user(email,email,password)
+        user = User.objects.create_user(email, email, password)
         user.first_name = first_name
         user.last_name = last_name
         try:
             user.save()
         except Exception as e:
             print()
-            #TODO
-
+            # TODO
 
     return render(request, 'signup.html')
 
@@ -136,34 +137,38 @@ def get_result_text(request):
                     concept = concepts["concept"]
                     _concept = concept
                     for date, score in concepts["popularity"].items():
-                        Popularity.objects.create(concept=concept, date=str(date).split()[0], score=score)
+                        Popularity.objects.create(
+                            concept=concept, date=str(date).split()[0], score=score)
 
-                Polarity.objects.create(polarity=polarity['polarity'], confidence=polarity['polarity_confidence'])
-                _polarity = polarity=polarity['polarity']
+                Polarity.objects.create(
+                    polarity=polarity['polarity'], confidence=polarity['polarity_confidence'])
+                _polarity = polarity = polarity['polarity']
 
                 _topics = []
-                for concept in topics:            
-                    Topics.objects.create(topics=concept['label'], confidence=concept['confidence'])
+                for concept in topics:
+                    Topics.objects.create(
+                        topics=concept['label'], confidence=concept['confidence'])
                     _topics.append(concept['label'])
 
-                Subjectivity.objects.create(subjectivity=subjectivity['subjectivity'], confidence=subjectivity['subjectivity_confidence'])
+                Subjectivity.objects.create(
+                    subjectivity=subjectivity['subjectivity'], confidence=subjectivity['subjectivity_confidence'])
                 _subjectivity = subjectivity['subjectivity']
 
                 chart_list = all_charts(request)
 
-                return render(request, 'result.html', {  
-                    'concept_' : _concept,
+                return render(request, 'result.html', {
+                    'concept_': _concept,
                     'topics_': [t for t in _topics],
                     'subjectivity_': _subjectivity,
                     'polarity_': _polarity,
-                    'summary' : summary,
-                    'chart_list' : chart_list,
-                    }
+                    'summary': summary,
+                    'chart_list': chart_list,
+                }
                 )
             else:
                 return HttpResponseRedirect("../analyze/")
-        
-        
+
+
 def get_result_url(request):
     if request.method == 'POST':
         url = request.POST.get('urlfield', None)
@@ -182,29 +187,33 @@ def get_result_url(request):
                 concept = concepts["concept"]
                 _concept = concept
                 for date, score in concepts["popularity"].items():
-                    Popularity.objects.create(concept=concept, date=str(date).split()[0], score=score)
+                    Popularity.objects.create(
+                        concept=concept, date=str(date).split()[0], score=score)
 
-            Polarity.objects.create(polarity=polarity['polarity'], confidence=polarity['polarity_confidence'])
-            _polarity = polarity=polarity['polarity']
+            Polarity.objects.create(
+                polarity=polarity['polarity'], confidence=polarity['polarity_confidence'])
+            _polarity = polarity = polarity['polarity']
 
             _topics = []
-            for concept in topics:            
-                Topics.objects.create(topics=concept['label'], confidence=concept['confidence'])
+            for concept in topics:
+                Topics.objects.create(
+                    topics=concept['label'], confidence=concept['confidence'])
                 _topics.append(concept['label'])
 
-            Subjectivity.objects.create(subjectivity=subjectivity['subjectivity'], confidence=subjectivity['subjectivity_confidence'])
+            Subjectivity.objects.create(
+                subjectivity=subjectivity['subjectivity'], confidence=subjectivity['subjectivity_confidence'])
             _subjectivity = subjectivity['subjectivity']
 
             chart_list = all_charts(request)
 
-            return render(request, 'result.html', {  
-                'concept_' : _concept,
+            return render(request, 'result.html', {
+                'concept_': _concept,
                 'topics_': [t for t in _topics],
                 'subjectivity_': _subjectivity,
                 'polarity_': _polarity,
-                'summary' : summary,
-                'chart_list' : chart_list,
-                }
+                'summary': summary,
+                'chart_list': chart_list,
+            }
             )
 
 
@@ -224,35 +233,31 @@ def all_charts(request):
     # Step 1: Create a DataPool with the data we want to retrieve.
     popularity_data = \
         DataPool(
-           series=
-            [{'options': {
-               'source': Popularity.objects.all()},
-              'terms': [
+            series=[{'options': {
+                'source': Popularity.objects.all()},
+                'terms': [
                 'concept',
                 'date',
                 'score']}
-             ])
+            ])
 
-    #Step 2: Create the Chart object
+    # Step 2: Create the Chart object
     popularity = Chart(
-            datasource = popularity_data,
-            series_options =
-              [{'options':{
-                  'type': 'line',
-                  'stacking': False},
-                'terms':{
-                  'date': [
-                    'score']
-                  }}],
-            chart_options =
-              {'title': {
-                   'text': ''},
-               'xAxis': {
-                    'title': {
-                       'text': 'Time'}}})
+        datasource=popularity_data,
+        series_options=[{'options': {
+            'type': 'line',
+            'stacking': False},
+            'terms': {
+            'date': [
+                'score']
+        }}],
+        chart_options={'title': {
+            'text': ''},
+            'xAxis': {
+            'title': {
+                'text': 'Time'}}})
 
-
-    # Polarity 
+    # Polarity
 
     # Step 1: Create a DataPool with the data we want to retrieve.
     polaritydata = PivotDataPool(
@@ -269,7 +274,7 @@ def all_charts(request):
         }]
     )
 
-    #Step 2: Create the Chart object
+    # Step 2: Create the Chart object
     polarity = PivotChart(
         datasource=polaritydata,
         series_options=[{
@@ -314,7 +319,7 @@ def all_charts(request):
         }]
     )
 
-    #Step 2: Create the Chart object
+    # Step 2: Create the Chart object
     topics = PivotChart(
         datasource=topicsdata,
         series_options=[{
@@ -359,7 +364,7 @@ def all_charts(request):
         }]
     )
 
-    #Step 2: Create the Chart object
+    # Step 2: Create the Chart object
     subjectivity = PivotChart(
         datasource=subjectivitydata,
         series_options=[{
@@ -386,14 +391,14 @@ def all_charts(request):
             }
         }
     )
- 
+
     return [popularity, polarity, topics, subjectivity]
 
 
 def test_charts(request):
     chart_list = all_charts(request)
-    return render(request, 'test.html', {     
-            'summary' : 'Lorem ipsum',
-            'chart_list' : chart_list,
-            }
-        )
+    return render(request, 'test.html', {
+        'summary': 'Lorem ipsum',
+        'chart_list': chart_list,
+    }
+    )
