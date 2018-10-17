@@ -3,10 +3,10 @@ from opinionytics.features.topicsInvolved.TopicClassifier import *
 from opinionytics.features.positivity.PositivityAnalyzer import *
 from opinionytics.features.subjectivity.SubjectivityAnalyzer import *
 from opinionytics.features.popularity.PopularityAnalyzer import *
-from .Analyze import Analyze
+from opinionytics.utils.Analyze import Analyze
 
 
-class All_features_view:
+class AllFeatures:
     def __init__(self, client, pytrends, natural_language_understanding):
         self.summaryGenerator = SummaryGenerator(client)
         self.subjectivityAnalyzer = SubjectivityAnalyzer(client)
@@ -39,4 +39,4 @@ class All_features_view:
         return analyze.get_analyze()
 
     def execute_data(self, data):
-        data
+        pass
