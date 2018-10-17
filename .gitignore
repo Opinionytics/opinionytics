@@ -1,6 +1,7 @@
 *.pyc
 *.pyo
 
+.idea
 .vscode
 
 opinionytics/api_config.py
