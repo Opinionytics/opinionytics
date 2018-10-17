@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Popularity(models.Model):
     concept = models.CharField(max_length=50)
     date = models.CharField(max_length=50)
@@ -19,4 +20,3 @@ class Topics(models.Model):
 class Subjectivity(models.Model):
     subjectivity = models.CharField(max_length=50)
     confidence = models.DecimalField(max_digits=2, decimal_places=1)
-
