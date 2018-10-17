@@ -17,6 +17,8 @@ from watson_developer_cloud.natural_language_understanding_v1 import (ConceptsOp
                                                                       Features)
 from aylienapiclient import textapi
 
+from opinionytics.all_views.signin_view import signin_view
+from opinionytics.all_views.signup_view import signup_view
 from .models import *
 
 from .api_config import *
@@ -64,32 +66,13 @@ def analyze_data(request):
 
 def signup(request):
     if request.method == "POST":
-        email = request.POST['email']
-        password = request.POST['password']
-        first_name = request.POST['firstName']
-        last_name = request.POST['lastName']
-        user = User.objects.create_user(email, email, password)
-        user.first_name = first_name
-        user.last_name = last_name
-        try:
-            user.save()
-        except Exception as e:
-            print()
-            # TODO
-
+        signup_view(request)
     return render(request, 'signup.html')
 
 
 def signin(request):
     if request.method == "POST":
-        username = request.POST['textfield']
-        password = request.POST['passwordfield']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            print("ok")
-            return redirect("../analyze")
-        # TODO
+        signin_view(request)
     return render(request, 'signin.html')
 
 
