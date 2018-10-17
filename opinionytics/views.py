@@ -19,19 +19,14 @@ from aylienapiclient import textapi
 
 from .models import *
 
-APP_ID = "8ebd4c0e"
-APP_KEY = "707f70d4fe70e4e22210bfd824949ba9"
+from .api_config import *
 
-client = textapi.Client(APP_ID, APP_KEY)
-
-USERNAME = 'ea1c5c7c-c39e-4af6-bcd5-b9103dc229a2'
-PASSWORD = 'Xl21Xq1EeDwW'
-VERSION = '2017-02-27'
+client = textapi.Client(TEXT_API_ID, TEXT_API_KEY)
 
 natural_language_understanding = NaturalLanguageUnderstandingV1(
-    username=USERNAME,
-    password=PASSWORD,
-    version=VERSION)
+    username=NLP_API_USERNAME,
+    password=NLP_API_PASSWORD,
+    version=NLP_API_VERSION)
 
 pytrends = TrendReq(hl='en-US', tz=360)
 

@@ -2,3 +2,5 @@
 *.pyo
 
 .vscode
+
+opinionytics/api_config.py

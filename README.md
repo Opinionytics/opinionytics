@@ -58,6 +58,15 @@ git clone git@github.com:Opinionytics/opinionytics.git
 cd opinionytics
 ```
 
+## API config
+
+```
+cd opinionitycs
+touch api_config.py
+```
+
+Copy the `./opinionytics/api_config_example.py` into the `./opinionytics/api_config` and configure it with your API ids.
+
 ## Deploy Opinionytics
 
 ```
