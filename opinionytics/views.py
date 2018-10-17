@@ -33,7 +33,7 @@ natural_language_understanding = NaturalLanguageUnderstandingV1(
     password=PASSWORD,
     version=VERSION)
 
-pytrends = TrendReq(hl='en-US', tz=320)
+pytrends = TrendReq(hl='en-US', tz=360)
 
 all_features_view = All_features_view(
     client, pytrends, natural_language_understanding)
