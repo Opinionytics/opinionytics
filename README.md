@@ -1,5 +1,10 @@
 # Opinionytics
 
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg)
+
 A simple way to view all the informations about any text out there.
 
 ## Getting Started
