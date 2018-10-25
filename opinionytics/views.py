@@ -35,9 +35,8 @@ all_features = AllFeatures(
     natural_language_understanding
 )
 
+
 # Go to the analyze view
-
-
 def analyze(request):
     return render(request, 'analyze.html')
 
