@@ -1,43 +1,28 @@
 # Topics Involved Feature
+# Classifying text from a string input
 
-## Classifying text from a string input 
+# Import NLP library
+from watson_developer_cloud.natural_language_understanding_v1 import Features, ConceptsOptions
+
 
 class TopicClassifier:
-    
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, pytrends, natural_language_understanding):
+        self.pytrends = pytrends
+        self.natural_language_understanding = natural_language_understanding
 
+    # Getting concepts from url and text
+    def getTopics(self, numberConcepts=4, min_relevance=0.75, text=None, url=None):
+        response = self.natural_language_understanding.analyze(
+            text=text,
+            url=url,
+            features=Features(concepts=ConceptsOptions(limit=numberConcepts))
+        )
+        concepts = response["concepts"]
+        concepts = [{'label': k['text'], 'confidence': k['relevance']}
+                    for k in concepts]
+        return concepts
 
-    def getTopics(self, text=None, url=None, data=None):
-        if url is not None:
-            return self.__classifyUrl(url)
-        elif text is not None:
-            return self.__classifyText(text)
-        elif data is not None:
-            #TODO
-            ""
-        else:
-            raise ValueError('Url or text must be provided')
-
-
-    def __classifyText(self, text):
-        classifications = self.client.Classify({"text": text})
-        for i in classifications["categories"]:
-            del i["code"] # delete the code field of the json object
-        return classifications["categories"]
-    
-
-    ## Classifying Text from An URL
-    def __classifyUrl(self, url):
-        classifications = self.client.Classify({"url": url})
-        for i in classifications["categories"]:
-            del i["code"] # delete the code field of the json object
-        return classifications['categories']
-    
-
-    ## Classifying data from a file input
+    # Classifying data from a file input
     def __classifyData(self, data):
-        ""
-        #TODO
-            
-
+        # TODOs
+        pass
