@@ -40,7 +40,7 @@ def url_results_view(request, url, all_features_view):
         print(_topics)
         response = {
             'concept_': _concept,
-            'topics_': [t for t in _topics],
+            'topics_': ", ".join([t for t in _topics]),
             'subjectivity_': _subjectivity,
             'polarity_': _polarity,
             'summary': summary,
