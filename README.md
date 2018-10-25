@@ -1,16 +1,5 @@
 # Opinionytics
 
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
-![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg)
-[![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://github.com/Opinionytics/opinionytics/graphs/contributors)
-
-[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://github.com/Opinionytics/opinionytics/issues)
-[![GitHub issues-closed](https://img.shields.io/github/issues-closed/Naereen/StrapDown.js.svg)](https://github.com/Opinionytics/opinionytics/issues?q=is%3Aissue+is%3Aclosed)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/Naereen/StrapDown.js.svg)](https://github.com/Opinionytics/opinionytics/pulls)
-[![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/Naereen/StrapDown.js.svg)](https://github.com/Opinionytics/opinionytics/pulls?q=is%3Apr+is%3Aclosed)
-
 A simple way to view all the informations about any text out there.
 
 ## Getting Started
