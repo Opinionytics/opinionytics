@@ -11,13 +11,17 @@ class AllFeatures:
         self.summaryGenerator = SummaryGenerator(client)
         self.subjectivityAnalyzer = SubjectivityAnalyzer(client)
         self.positivityAnalyzer = PositivityAnalyzer(client)
-        self.topicsClassifier = TopicClassifier(client)
-        self.popularityAnalyzer = PopularityAnalyzer(pytrends, natural_language_understanding)
-    
+        self.topicsClassifier = TopicClassifier(
+            pytrends,
+            natural_language_understanding
+        )
+        self.popularityAnalyzer = PopularityAnalyzer(
+            pytrends,
+            natural_language_understanding
+        )
 
     def __str__(self):
         return "All features view"
-        
 
     def execute_text(self, text):
         summary = self.summaryGenerator.getSummary(text=text)
@@ -25,9 +29,9 @@ class AllFeatures:
         positivity = self.positivityAnalyzer.getPositivity(text=text)
         topics = self.topicsClassifier.getTopics(text=text)
         popularity = self.popularityAnalyzer.getPopularity(text=text)
-        analyze = Analyze(summary, subjectivity, positivity, topics, popularity)
+        analyze = Analyze(summary, subjectivity,
+                          positivity, topics, popularity)
         return analyze.get_analyze()
-
 
     def execute_url(self, url):
         summary = self.summaryGenerator.getSummary(url=url)
@@ -35,7 +39,8 @@ class AllFeatures:
         positivity = self.positivityAnalyzer.getPositivity(url=url)
         topics = self.topicsClassifier.getTopics(url=url)
         popularity = self.popularityAnalyzer.getPopularity(url=url)
-        analyze = Analyze(summary, subjectivity, positivity, topics, popularity)
+        analyze = Analyze(summary, subjectivity,
+                          positivity, topics, popularity)
         return analyze.get_analyze()
 
     def execute_data(self, data):

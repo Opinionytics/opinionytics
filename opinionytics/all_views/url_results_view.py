@@ -2,6 +2,7 @@ from opinionytics.models import Popularity, Polarity, Topics, Subjectivity
 
 from opinionytics.all_views.all_charts import all_charts
 
+
 def url_results_view(request, url, all_features_view):
     if url != None:
         analyze = all_features_view.execute_url(url)
@@ -36,7 +37,7 @@ def url_results_view(request, url, all_features_view):
         _subjectivity = subjectivity['subjectivity']
 
         chart_list = all_charts(request)
-
+        print(_topics)
         response = {
             'concept_': _concept,
             'topics_': [t for t in _topics],
